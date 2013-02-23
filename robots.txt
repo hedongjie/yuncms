@@ -1,0 +1,8 @@
+#
+# robots.txt for YUNCMS
+#
+User-agent: * 
+Disallow: /install
+Disallow: /data
+Disallow: /sources
+Disallow: /admin.php
