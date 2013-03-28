@@ -1,0 +1,15 @@
+.header {background:#3a6ea5 url(img4/hdbg.gif) repeat-x left bottom;}
+.header .logo{background-image: url(img4/logo.gif)}
+.header .nav li, .header .nav li a{background-image: url(img4/nav_bg.png);}
+
+
+.header .nav li.tab_web a span{background: url(../images/admin_img/site.png) no-repeat;}
+#Skin .s1{background-position:0 -66px}
+#Skin .s4{background-position:-14px -66px}
+
+
+
+
+
+
+

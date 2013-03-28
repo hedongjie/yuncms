@@ -1,0 +1,83 @@
+@charset "utf-8";
+/* CSS Document */
+body{margin:0px; padding:0px; font-size:12px; color:#555555; font-family:宋体;  background-color:#f1f1f1;}
+ul,ol,li,dd,dl,dt,p,img,h1,h2,h3,h4,h5,h6{margin:0px; padding:0px; list-style:none; border:0px; vertical-align:top; }
+font{ font-size:12px;}
+form{margin:0px; padding:0px;}
+a{ color:#555555;  text-decoration: none;}
+a:hover{ color:#017CD2; text-decoration:underline;}
+.clear{	clear:both;	}
+#content{ width:100%; height:auto; position:relative; overflow: hidden;}
+.paddingWidth{ padding:20px;}
+.textShadow{text-shadow:#fff 1px 1px 0px;}
+/*head Css*/
+/*-----head Css------*/
+.head{ width:100%; height:140px; position:relative; z-index:2; background: url(../images/headBgX.gif) repeat-x;}
+.head .box{ width:955px; height:140px; margin:0 auto; position:relative; background: url(../images/headBg.jpg) no-repeat;}
+.head .box .logo{ width:320px; height:60px; position: absolute; top:16px; left:20px;filter:alpha(opacity=0);-khtml-opacity: 0;	opacity:0;}
+.head .box .logo h3{}
+.head .box .logo h3 a{ display:block; width:320px; height:60px; overflow:hidden; cursor:pointer; font-family:'微软雅黑'; font-size:28px; line-height:150%; color:#888;}
+.head .box .logo p{ font-family:'微软雅黑'; font-size:14px; line-height:150%; color:#aaa;}
+
+.head .search{ display:block; width:220px; height:30px; position:absolute; top:35px; right:0px;}
+.head .search .text{ display:block; width:158px; height:22px; float:left; border:1px solid #999; overflow:hidden; background:#fff;}
+.head .search .text input{ display:block; width:158px; height:20px; border:0px; background:none; color:#888; text-indent:6px;}
+.head .search .button{ display:block; width:58px; height:24px; float:left;border:0px solid #ddd; overflow:hidden; background:#999;}
+.head .search .button input{ display:block; width:100%; height:23px; cursor:pointer; border:0px; background:none;  color:#fff;}
+.head .search .button:hover{background:#0189d1;}
+
+
+/*导航栏*/
+.head .nav{ width:100%; height:42px; position: absolute; bottom:0px; background:#015FAC; border-bottom:1px solid #165ca2;}
+.head .nav ul#navBox{ width: 955px; height:42px; margin:0 auto;  display:block; position:relative;}
+.head .nav ul#navBox li{ width: 134px; height:42px; padding:0 0px; text-align:center; line-height:42px; display:block; float:left; z-index:2; position:relative;}
+.head .nav ul#navBox li a{ z-index:2; position:relative; font-weight: normal;display: block; width: 100%; height: 42px; top:0px; line-height:42px; color:#d2e2f1; font-size:14px; font-family:'微软雅黑';}
+.head .nav ul#navBox li a:hover,.head .nav ul#navBox li.current a{ color:#ffffff; text-decoration:none;}
+
+.head .nav ul#navBox li .subNav{ width:132px; height: 0px; overflow:hidden; position:absolute;top:42px;left:1px; z-index:1; }
+.head .nav ul#navBox li .subNav .boxs{overflow:hidden;background:#015fac;}
+.head .nav ul#navBox li .subNav .boxs a{height:35px; width:92%; margin:5px auto 1px auto; line-height:35px;color:#fff; font-size:12px; font-weight:normal; top:0px; background:none;text-shadow:#0f92ff 0px 0px 0px;}
+.head .nav ul#navBox li .subNav .boxs a:hover{height:35px; background:#fff;color:#888;text-shadow:#0f92ff 0px 0px 0px;}
+.scrollArea{ width: 955px; height:1px; position: relative; margin: 0 auto;}
+.scrollArea .scrollObj{ width:134px; height:51px; position: absolute; top:-4px; left:-550px; z-index:1; background:red;}
+
+
+
+/*Share Css*/
+/*newsFloatShare Css*/
+.newsFloatShare{ border:5px solid #d9d9d9; width:60px; height:320px; background:#cfcfcf; -webkit-border-radius: 5px;-moz-border-radius: 5px; background:#fff; position:absolute; right:10px; top:145px;}
+.newsFloatShare .box{}
+.newsFloatShare .titleText{ width:50px; margin: 0px auto; border-bottom:1px solid #ddd; height:40px; line-height:40px; font-size:12px; text-align:center; color:#1184d5; font-family:'Microsoft YaHei','SimHei';}
+.newsFloatShare a{ width:32px; height:32px; display:block; margin:10px auto; background: url(../images/newsFloatShareIco.jpg) no-repeat;}
+.newsFloatShare a.share01{ background-position:0 0;}
+.newsFloatShare a.share02{ background-position:0 -32px;}
+.newsFloatShare a.share03{ background-position:0 -64px;}
+.newsFloatShare a.share04{ background-position:0 -96px;}
+.newsFloatShare a.share05{ background-position:0 -128px;}
+.newsFloatShare a.share06{ background-position:0 -128px;}
+.newsFloatShare .moreArea{ width:40px; height:40px; overflow:hidden; margin: 0 auto;}
+
+/*---Foot Css---*/
+.foot{ width:100%; height:130px; background:#f0f0f0;}
+.foot .layout{ width:955px; height:130px; color:#3f3f3f; position:relative; overflow:hidden; margin:10px auto 0 auto; background:  url(../images/footLogo.jpg) no-repeat center right; color:#b9b9b9;}
+.foot .links{ line-height:30px; height:30px; margin-top:20px;}
+.foot .links span{color:#aaa; font-weight:bold;}
+.foot .box{ width:600px; height:46px; color:#b9b9b9; padding-left:0px; margin-top:0px; text-align:left; line-height:24px; float:left;}
+.foot a{ color:#b9b9b9;}
+ .line{height:0px; overflow:hidden; border-top:1px solid #d6d4d4; border-bottom:1px solid #fff;}
+
+
+/*联系我们*/
+.floatContactMeTrigger{ width:35px; height:106px; position:absolute; overflow:hidden; top:150px; left:0px; background:#fff; border:2px solid #ccc; border-left:0px; background:url(../images/floatContactIco01.gif) no-repeat; cursor:pointer;}
+.floatContactMeTriggerCurrent{background:url(../images/floatContactIco02.gif) no-repeat; border-color:#017cd2;}
+
+.floatContactMe{ width:0px; height:0px; display: block; border:5px solid #666; background:#fff url(../images/contactMeImG.jpg) no-repeat center; position:absolute; top:-400px; left:-400px; z-index:888; overflow:hidden;}
+.floatMeClose{ display:block; width:26px; height:26px; overflow:hidden; cursor:pointer; background:none; position:absolute; right:4px; top:4px;}
+.floatContactMe .FloatQQ{ width:100px; height:28px; position:absolute; top:218px; left:106px; overflow:hidden; line-height:30px;}
+
+/*返回顶部*/
+.returnTop{ width:955px; height:0px; position:relative; margin:0px auto;}
+.returnTop .box{ position:fixed; display:block; _display:none; width:36px; height:36px; margin-left:975px; bottom:-60px; background:url(../images/returnBgX.png) repeat ; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;   cursor:pointer;}
+.returnTop .box a{ display:block; width:36px; height:36px;  float: left; background:url(../images/returnTopIco.gif) no-repeat 11px 10px; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;  }
+.returnTop .box a:hover{background-color:#6e6e6e;}
+.returnTop .box span{ float: left; line-height:36px; color:#e6e6e6; margin-left:6px;}

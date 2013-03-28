@@ -1,0 +1,103 @@
+{template 'member', 'header'}
+<style type="text/css">
+	.pdl {padding-left:50px; padding-top:10px;}
+	.pbutton{padding-left:100px;padding-top:40px;}
+	.sbutton{padding-left:85px;padding-top:20px;}
+	#myform .input .form {width: 560px;}
+	#myform .input label {width: 120px;}
+	#myform .input label {color: #8C8686;float: left;font-size: 14px; text-align: right; width: 84px;}
+	#edit_mail a {color: #3366CC;text-decoration: none;}
+</style>
+<div id="memberArea">
+{template 'member', 'account_manage_left'}
+<div class="col-auto">
+    	<div class="point" id='announcement'>
+            <a href="javascript:hide_element('announcement');" hidefocus="true" class="close"><span>{L('close')}</span></a>
+            <div class="content">
+                <strong class="title">{L('note')}：</strong>
+                <p>{L('mobile_bind_tips')}</p>
+            </div>
+            <span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
+        </div>
+    	<div class="col-1 ">
+			<h5 class="title"> {L('mobile').L('bind')}</h5>
+            <div class="content">
+            {if isset($mobile)}
+            	<table width="100%" cellspacing="0" class="table_form">
+					<tr>
+						<th width="120">{L('mobile')}：</th>        
+						<td>{$mobile} <a href='{core_request::get_url()}&edit_bind=true'>{L('edit_mobile_bind')}</a></td>
+					</tr>
+				</table>
+			</div>
+            {else}
+            <div style="padding: 10px 0px 10px 118px; color:#FF5B00">{L('unbound_mobile_bind')}</div>
+			<form method="post" action="{core_request::get_url()}" id="myform" name="myform">
+				<div class="input pdl">
+					<label>{L('mobile')}：</label><div id="mobile_div" class="form">
+					<input type="text" id="mobile" name="mobile" size="36" class="input-text">
+					<div class="input pbutton">
+						<input name="dosubmit" type="button" id="dosubmit" value="{L('submit')}" onclick="sendmobile();" class="button">
+					</div>
+				</div>
+				<div id="mobile_send_div" style='display:none'>{L('Verification_code_has_been_sent_to')}<span id='mail_send'></span>，
+				<span id='edit_mobile' style='display:none;'><a href='javascript:void(0);' onclick='edit_mobile()'>{L('edit_mobile_number_send')}</a>，
+				</span> {L('Verification_code_has_been_sent_to_2')}<br />
+				<div class='submit sbutton'><button type='button' id='GetVerify' onclick='sendmobile()' class='hqyz'>{L('re_get_sms_seccode')}</button></div>
+				<BR /><em class="sbutton">{L('my_mobile_seccode_is')}：<input type='text' name='mobile_verify' id='mobile_verify' value='' class='input-text'></em>
+				<div class="input pbutton"><input name="dosubmit" type="submit" id="dosubmit" value="{L('submit')}" class="button"></div></div>
+				</div>
+			</form>
+			</div>
+            {/if}
+			
+			<span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
+		</div>
+	</div>
+</div>
+<div class="clear"></div>
+<script type="text/javascript"> 
+<!--
+var times = 60;
+var isinerval;
+//只能放到最下面
+function sendmobile () {
+	var mobile = $('#mobile').val();
+	if (!/^13\d{9}$/g.test(mobile) &&!/^15[0-35-9]\d{8}$/g.test(mobile) && !/^18[05-9]\d{8}$/g.test(mobile)) {
+		$.dialog.tips('{L('Please_input_the_correct_cell_phone_number')}');
+		return false;
+	}
+	$.get('?app=member&controller=account&action=send_mobile&mobile='+mobile, function (data) {
+		if (data==2){
+			$('#mobile_div').hide();
+			$('#mobile_send_div').show();
+			times = 60;
+			$("#GetVerify").attr("disabled", true);
+			isinerval = setInterval("CountDown()", 1000);
+		} else if(data==1) {
+			$.dialog.tips('{L('Please_input_the_correct_cell_phone_number')}');
+			return false;
+		} else if(data=="-1") {
+			$.dialog.tips('{L('sms_ait_1_day')}');
+		} else {
+			$.dialog.tips('{L('SMS_messages_failure')}');
+		}
+	})
+}
+function CountDown() {
+	if (times < 1) {
+		$("#GetVerify").html("{L('Get_text_message_verification_code')}").attr("disabled", false);
+		$("#edit_mobile").css("display","");
+		clearInterval(isinerval);
+		return;
+	}
+	$("#GetVerify").html(times+"{L('To_send_verification_code')}");
+	times--;
+}
+function edit_mobile() {
+	$("#mobile_div").css("display","");
+	$("#mobile_send_div").css("display","none");
+}
+//-->
+</script>
+{template 'member', 'footer'}

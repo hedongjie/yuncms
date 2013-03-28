@@ -1,0 +1,47 @@
+{template 'member', 'header'}
+<div id="memberArea">
+	{template 'member', 'account_manage_left'}
+	<div class="col-auto">
+		<div class="col-1 ">
+			<h5 class="title">{L('member').L('bind')}</h5>
+			<script type='text/javascript'>
+			<!--
+		function unbind(muid){
+			$.dialog.confirm('解除绑定后无法恢复,是否继续?',
+					function(topWin){
+						$.get('?app=member&controller=account&action=unbind&form='+muid,function(data){
+						if(data == '1') {
+							$.dialog.tips('解绑成功！');
+							document.location.reload();
+						}else{
+							$.dialog.tips('解绑失败！');
+						}
+					})
+				},function(){});
+	    }
+		//-->
+	    </script>
+			<div class="content">
+			<p>你可以在这里绑定你的合作网站账号，绑定后你可以直接通过合作网站账号登录本网站</p>
+				<ul class="st_list">
+					{loop $open_list $k $v}
+					<li>
+					{if $v}
+					<p><span style="background:url({IMG_PATH}member/logo/{$k}_16_16.png) no-repeat;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span></span>{L('account')}：<span>{$v[name]}</span></p>
+						<p><span class="st_state_icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>{L('binding')}</p>
+						<p class="st_btn"><a href="javascript:unbind('{$v[form]}');">{L('unbind')}</a></p>
+				    {else}
+						<p><span style="background:url({IMG_PATH}member/logo/{$k}_16_16.png) no-repeat;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span></span>{L('account')}</p>
+						<p><span class="st_state_icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>{L('no_bind')}</p>
+						<p class="st_btn"><a href="index.php?app=member&controller=passport&action=public_{$k}_login&bind=1">{L('do_bind_account')}</a></p>
+				    {/if}
+				    </li>
+				{/loop} 
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="clear"></div>
+{template 'member', 'footer'}
+  

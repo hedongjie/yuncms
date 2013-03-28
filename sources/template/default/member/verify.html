@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<title>YUNCMS - {L('member','','member').L('manage_center')}</title>
+<script type="text/javascript" src="{JS_PATH}jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="{JS_PATH}member_common.js"></script>
+<script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script>
+<script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
+<script language="javascript" type="text/javascript"  src="{JS_PATH}artDialog4/jquery.artDialog.js?skin=default"></script>
+<script language="javascript" type="text/javascript"  src="{JS_PATH}artDialog4/plugins/iframeTools.js"></script>
+<link href="{CSS_PATH}reset.css" rel="stylesheet" type="text/css" />
+<link href="{CSS_PATH}table_form.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript">
+<!--
+$(function(){
+    $.formValidator.initConfig({
+        autotip:true,
+        formid:"myform",
+        onerror:function(msg){}
+    });
+
+    $("#username")
+        .formValidator({
+            onshow:"{L('input').L('username')}",
+            onfocus:"{L('username').L('between_2_to_20')}"
+        })
+        .inputValidator({
+            min:2,
+            max:20,
+            onerror:"{L('username').L('between_2_to_20')}"
+        })
+        .regexValidator({
+            regexp:"username",
+            datatype:"enum",
+            onerror:"{L('username').L('format_incorrect')}"
+        })
+        .ajaxValidator({
+            type : "get",
+            url : "api.php?c=member&a=checkname",
+            data :"",
+            datatype : "html",
+            async:'false',
+            success : function(data){
+                if( data == "1" ) {
+                    return true;
+                } else {
+                    return false;
+                }
+            },
+            buttons: $("#dosubmit"),
+            onerror : "{L('deny_register').L('or').L('user_already_exist')}",
+            onwait : "{L('connecting_please_wait')}"
+        });
+    $("#password")
+        .formValidator({
+            onshow:"{L('input').L('password')}",
+            onfocus:"{L('password').L('between_6_to_20')}"
+        })
+        .inputValidator({
+            min:6,
+            max:20,
+            onerror:"{L('password').L('between_6_to_20')}"
+        });
+    $("#pwdconfirm")
+        .formValidator({
+            onshow:"{L('input').L('cofirmpwd')}",
+            onfocus:"{L('input').L('passwords_not_match')}",
+            oncorrect:"{L('passwords_match')}"
+        })
+        .compareValidator({
+            desid:"password",
+            operateor:"=",
+            onerror:"{L('input').L('passwords_not_match')}"
+        });
+    $("#email")
+        .formValidator({
+            onshow:"{L('input').L('email')}",
+            onfocus:"{L('email').L('format_incorrect')}",
+            oncorrect:"{L('email').L('format_right')}"
+        })
+        .inputValidator({
+            min:2,
+            max:32,
+            onerror:"{L('email').L('between_2_to_32')}"
+        })
+        .regexValidator({
+            regexp:"email",
+            datatype:"enum",
+            onerror:"{L('email').L('format_incorrect')}"
+        })
+        .ajaxValidator({
+            type : "get",
+            url : "api.php?c=member&a=checkemail",
+            data :"",
+            datatype : "html",
+            async:'false',
+            success : function(data){   
+                if( data == "1" ) {
+                    return true;
+                } else {
+                    return false;
+                }
+            },
+            buttons: $("#dosubmit"),
+            onerror : "{L('deny_register').L('or').L('email_already_exist')}",
+            onwait : "{L('connecting_please_wait')}"
+    });
+    $("#code")
+    .formValidator({
+        onshow:"{L('input').L('checkcode')}",
+        onfocus:"{L('checkcode').L('between_2_to_8')}"
+    })
+    .inputValidator({
+        min:2,
+        max:8,
+        onerror:"{L('checkcode').L('between_2_to_8')}"
+    })
+    .ajaxValidator({
+        type : "get",
+        url : "api.php?c=checkcode&a=check",
+        data :"",
+        datatype : "html",
+        async:'false',
+        success : function(data){
+            if( data == "1" ) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+        buttons: $("#dosubmit"),
+        onerror : "{L('code_error')}",
+        onwait : "{L('connecting_please_wait')}"
+    });
+
+    $(":checkbox[name='protocol']")
+        .formValidator({
+            tipid:"protocoltip",
+            onshow:"{L('read_protocol')}",
+            onfocus:"{L('read_protocol')}"
+        })
+        .inputValidator({
+            min:1,
+            onerror:"{L('read_protocol')}"
+        });
+    {$formValidator}
+    {if !isset($_GET['modelid']) && !isset($_GET['t']) && !empty($member_setting['showregprotocol'])}
+        show_protocol();
+    {/if}
+});
+
+function show_protocol() {
+    art.dialog.open('?app=member&controller=passport&action=protocol',{
+        lock:false,
+        title:'{L('register_protocol')}',
+        id:'protocoliframe', 
+        width:'600px',
+        height:'410px',
+        yesText:'{L('agree')}',
+        ok: function(iframeWin, topWin){
+            $("#protocol").attr("checked",true);
+        }
+    });
+}
+
+//-->
+</script>
+<style type="text/css">
+.submit,.pass-logo a,.form-login .input label,.item span,#content h2 span em{display:inline-block;display:-moz-inline-stack;zoom:1;*display:inline;}
+.blue,.blue a{color:#377abe},.submit input{cursor:hand;}
+.log{line-height:24px; height:24px;float:right; font-size:12px}
+.log span{color:#ced9e7}
+.log a{color:#049;text-decoration: none;}
+.log a:hover{text-decoration: underline;}
+#header{ height:94px; background:url({IMG_PATH}member/h.png) repeat-x}
+#header .logo{ padding-right:100px;float:left;background:url({IMG_PATH}member/login-logo.png) no-repeat right 2px;}
+#header .content{width:920px; margin:auto; height:60px;padding:10px 0 0 0}
+#content{width:920px; margin:auto; padding:20px 0 0 0; overflow:auto}
+#footer{color:#666; line-height:24px;width:920px; margin:auto; text-align:center; padding:12px 0; margin-top:52px; border-top:1px solid #e5e5e5}
+#footer a{color:#666;}
+</style>
+</head>
+<body>
+<div id="header">
+    <div class="content">
+    <div class="logo"><a href="{SITE_URL}"><img src="{IMG_PATH}member-logo.png"/></a></div>
+    <span class="log"></span>
+    </div>
+</div>
+<div id="content">
+ {if isset($_GET['t']) && $_GET['t']==1}
+<div class="col-left form-login form-reg">
+{php $emailurl = cookie_get('email') ? str_replace('@', '',strstr(cookie_get('email'), '@')) : '';}
+{cookie_get('_username')} {L('hellow')}，{L('login_email_authentication')} {if $emailurl} {L('please_click')}<a href="http://mail.{$emailurl}">{L('login_email')}</a>{/if}
+</div>
+{elseif isset($_GET['t']) && $_GET['t']==2}
+<div class="col-left form-login form-reg">
+{cookie_get('_username')} {L('hellow')}，{L('please_wait_administrator_verify')}
+</div>
+{else}
+<script language="JavaScript">
+<!--
+    redirect("{SITE_URL}index.php?app=member&controller=passport&action=login");
+//-->
+</script>
+{/if}
+</div>
+{template 'member', 'footer'}

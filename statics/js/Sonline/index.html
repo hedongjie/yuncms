@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>在线客服插件</title> 
+<link rel="stylesheet" type="text/css" href="style/public.css"/>
+
+
+<!--需要其它风格，可导入“style/”目录下的其它样式表文件-->
+<link rel="stylesheet" type="text/css" href="style/red.css"/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script language="javascript" src="js/jquery.Sonline.js"></script>
+<script type="text/javascript">
+$(function(){
+	$().Sonline({
+		Position:"left",//left或right
+		Top:100,//顶部距离，默认200px
+		Width:165,//顶部距离，默认200px
+		Style:6,//图标的显示风格共6种风格，默认显示第一种：1
+		Effect:true, //滚动或者固定两种方式，布尔值：true或false
+		DefaultsOpen:true, //默认展开：true,默认收缩：false
+		Tel:"400-555-6565",//其它信息图片等
+		Qqlist:"402719549|售前咨询,402719549|售前咨询,402719549|售后咨询,402719549|技术支持,402719549|建议/投诉" //多个QQ用','隔开，QQ和客服名用'|'隔开
+		
+	});
+})	
+</script>
+<script type="text/javascript">
+$(function(){
+$(".nav > ul > li").hover(function(){
+		$(this).addClass("current");
+		var subHeight = ($(this).find(".subNav").find("a").length)*42;
+		$(this).find(".subNav").stop(true,true).animate({height:subHeight},"fast");
+		},function(){
+			$(this).removeClass("current");
+			$(this).find(".subNav").animate({height:0},"fast");
+	});
+})
+</script>
+</head>
+<body>
+<div class="head">
+	<div class="box">
+    	<div class="logo">
+			<h3><a href="/index.html">似懂非懂</a></h3>
+			<p>隔着玻璃看世界，一样很精彩！</p>
+        </div>
+        <!--搜索 start-->
+        <div class="search" id="search">
+        	<form action="http://www.haw86.com/index.php" method="get">
+      		<input type="hidden" value="article" name="c">
+            <input name="a" type="hidden" value="search">
+            <div class="text">
+                <input type="text" name="word" id="searchbox" onblur="if (value ==''){value='搜索日志'}" onclick="if(this.value!='')this.value=''" value="搜索日志">
+            </div>
+            <div class="button">
+                <input type="submit" id="searchbutton" value="搜索">
+            </div>
+            </form>
+        </div>
+        <!--搜索 start-->
+        
+    </div>
+        
+    <div class="nav">
+        <ul id="navBox">
+            <li class=""><a href="/index.html">首 页</a></li>
+                        	<li class=""><a href="/heart/index.html">随心而记</a>
+                	<div class="subNav" style="height: 0px; ">
+                    	<div class="boxs">
+                                                    </div>
+                    </div>
+                </li>
+                        	<li class=""><a href="/webfront/index.html">Web前端</a>
+                	<div class="subNav" style="height: 0px; ">
+                    	<div class="boxs">
+                                                            <a href="/webfront/css/index.html">Css</a>
+                                                            <a href="/webfront/html/index.html">html</a>
+                                                            <a href="/webfront/jqueryplug-ins/index.html">Jquery插件</a>
+                                                            <a href="/webfront/jqueryskill/index.html">Jquery技巧</a>
+                                                    </div>
+                    </div>
+                </li>
+                        	<li><a href="/webcase/index.html">Web作品</a>
+                	<div class="subNav">
+                    	<div class="boxs">
+                                                    </div>
+                    </div>
+                </li>
+                        	<li><a href="/videocase/index.html">Video作品</a>
+                	<div class="subNav">
+                    	<div class="boxs">
+                                                    </div>
+                    </div>
+                </li>
+                        	<li><a href="/message/index.html">给我留言</a>
+                	<div class="subNav">
+                    	<div class="boxs">
+                                                    </div>
+                    </div>
+                </li>
+                        	<li><a href="/music/index.html">音乐欣赏</a>
+                	<div class="subNav">
+                    	<div class="boxs">
+                                                    </div>
+                    </div>
+                </li>
+                    </ul>
+        
+    </div>
+    
+</div>
+
+<div class="publicBox">
+
+<div class="allBox">
+<div class="mainBox">
+	<div class="shengmIco"><img src="images/otherImg/img02.jpg" /></div>
+
+	<div class="miapShuListBox">
+		<h3>jquery.Sonline Beta2.0(在线客服插件)</h3>
+		<p>
+		作者：似懂非懂<br>
+		版本：Beta 2.0<br>
+		Blog：<a href="http://www.haw86.com" target="_blank">http://www.haw86.com</a><br>
+		预览效果：<a href="/down/jquery.Sonline/2.0/index.html" target="_blank">点击这里</a><br />	
+		下载插件：<a href="/down/jquery.Sonline/2.0/jquery.Sonline.2.0.zip" target="_blank">点击这里</a>
+		</p>
+	</div>
+	
+	<div class="miapShuListBox">
+		<h3>调用方法</h3>
+		<p>
+        &lt;script type=&quot;text/javascript&quot;&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;$(function(){<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$().Sonline({<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Position:&quot;left&quot;,//left或right<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top:100,//顶部距离，默认200px<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width:165,//顶部距离，默认200px<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Style:1,//图标的显示风格共6种风格，默认显示第一种：1<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Effect:true, //滚动或者固定两种方式，布尔值：true或false<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DefaultsOpen:true, //默认展开：true,默认收缩：false<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tel:&quot;400-555-6565&quot;,//其它信息图片等<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qqlist:&quot;402719549|售前咨询,402719549|售前咨询,402719549|售后咨询,402719549|技术支持,402719549|建议/投诉&quot; //多个QQ用','隔开，QQ和客服名用'|'隔开<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}) <br />
+&lt;/script&gt;<br />
+<br>
+		</p>
+	</div>
+	
+	<div class="miapShuListBox">
+		<h3>Dom 结构</h3>
+		<p>
+			  &nbsp;&nbsp;&nbsp;&nbsp;无需编写任何Dom结构代码，Js自动生成在body里面
+		</p>
+	</div>
+	
+	<div class="miapShuListBox">
+		<h3>Style 样式</h3>
+		<p>
+			多套Css样式文件导入，风格多样化。<Br />
+            风格切换方法：需要其它风格，可导入"style/"目录下的其它样式表文件
+		</p>
+	</div>
+	<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fa678f82da71cad7e3ebbedc6c150088e' type='text/javascript'%3E%3C/script%3E"));
+</script> <script src="http://s14.cnzz.com/stat.php?id=2503999&web_id=2503999" language="JavaScript"></script>
+</div>
+</div>
+</div>
+
+
+<style>
+body{font-size:12px;font-family: '微软雅黑';}
+.publicBox{ background: #fff url(images/otherImg/bodyBgX.jpg) repeat-x; width:100%; height:auto; position:relative; overflow:hidden;}
+.allBox{ width:100%; height:auto; padding-bottom:500px; background:url(images/otherImg/bodyBottom.jpg) no-repeat center bottom;}
+.mainBox{height:auto; width:700px; margin:134px auto 0px auto; padding:30px; background:#eee; border:5px solid #fff; position:relative;}
+.mainBox .shengmIco{ width:211px; height:83px; position:absolute; top:-95px; right:-178px;}
+.miapShuListBox{}
+.miapShuListBox h3{font-size:16px; padding:0px; margin:0px; line-height:25px; color:#444;;}
+.miapShuListBox p{color:#666; line-height:200%; margin-bottom:30px; background:#f8f8f8; padding:10px; border:1px solid #d5d5d5;font-family: Arial, '微软雅黑';}
+</style>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+{yun:comment do="get_comment" commentid="$commentid"}
+{php $comment = $data;}
+{/yun}
+<div class="bor-9fc">
+  <div class="mode-head"> <span class="comment-count" style="float:right"><a href="{SITE_URL}index.php?app=comment&controller=index&action=init&commentid={$commentid}" title="点击查看全部评论">已有<em class="comments">{if $comment[total]}{$comment[total]}{else}0{/if}</em>人参与</a></span>
+    <h2 class="cor-c00">网友评论</h2>
+  </div>
+  <div class="padd-20 padd-b-0 ie6"> 
+    <!-- {yun:comment do="lists" commentid="$commentid" hot="$hot" num="5"}注意： 这里只显示5条评论  -->{if !empty($data)}
+    <dl class="mode-comment">
+      {loop $data $r}
+      <dt> <span class='user-info'>{get_ip_area($r[ip])}   [{if $r[userid]}{get_nickname($r[userid])}{else}{$r[username]}{/if}]： </span> <span class='post-time'>{format::date($r[creat_at], 1)}</span></dt>
+      <dd>
+        <p>{$r[content]}</p>
+        <div class='hr-dotted hr-h10'></div>
+      </dd>
+      </dt>
+      {/loop}
+    </dl>
+    {/if}{/yun}
+    <div class="view-comment" ><a href="{SITE_URL}index.php?app=comment&controller=index&action=init&commentid={$commentid}" title="点击查看全部评论">查看全部评论</a></div>
+  </div>
+  <div class="post-comment-area padd-lr-20" id="comment_iframe">
+    <form action="{SITE_URL}index.php?app=comment&controller=index&action=post&commentid={$commentid}" method="post" onsubmit="return on_submit()">
+      <input type="hidden" name="title" value="{urlencode(($comment[title] ? $comment[title] : $title))}">
+      <input type="hidden" name="url" value="{urlencode(($comment[url] ? $comment[url] : $url))}">
+      <div class="hr-h10"></div>
+      <textarea name="content"  rows="10" cols="58" class="textarea textarea-w600"></textarea>
+      <div class="user-writeinfo"> <span class="f-r"> {if $setting[code]}
+        <label>验证码：
+          <input type="text" name="code"  class="input-text" id="yzmText" onfocus="var offset = $(this).offset();$('#yzm').css({'left': +offset.left-8, 'top': +offset.top-$('#yzm').height()});$('#yzm').show();$('#yzmText').data('hide', 1)" onblur='$("#yzmText").data("hide", 0);setTimeout("hide_code()", 3000)' />
+        </label>
+        <div id="yzm" class="yzm">{form::checkcode()}<br />
+          点击图片更换</a></div>
+        {/if}
+        <input type="submit" value="发表评论" class="post-btn" />
+        </span> {if $userid} <span class="f-l">用户名： <b>{get_nickname()}</b></span> <span class="f-l mar-l-10 padd-3"><a href="{SITE_URL}index.php?app=member&controller=index&action=logout&forward={urlencode(($comment[url] ? $comment[url] : $url))}"  target="_top">退出</a></span> {else} <span class="f-l mar-l-10 padd-3"><a href="{SITE_URL}index.php?app=member&controller=index&action=login&forward={urlencode(($comment[url] ? $comment[url] : $url))}" target="_top" class="blue">登录</a><span> | </span><a href="{SITE_URL}index.php?app=member&controller=index&action=register" class="blue"  target="_top">注册</a> {if !$setting[guest]}<span style="color:red">需要登陆才可发布评论</span>{/if}
+        {/if}</span> </div>
+      <div class="hr-h10"></div>
+    </form>
+  </div>
+</div>
+<script type="text/javascript">
+function hide_code() {
+	if ($('#yzmText').data('hide')==0) {
+		$('#yzm').hide();
+	}
+}
+</script>
