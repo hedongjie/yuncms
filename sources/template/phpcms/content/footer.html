@@ -1,0 +1,24 @@
+<div class="footer">
+<p class="info">
+{yun:content do="category" catid="1" num="15" order="listorder ASC"}
+{loop $data $r}
+<a href="{$r[url]}" target="_blank">{$r[catname]}</a> |  
+{/loop}
+{/yun}
+<a href="{APP_PATH}index.php?m=link" target="_blank">友情链接</a>
+<br />
+Powered by <strong><a href="http://www.phpcms.cn" target="_blank">PHPCMS</a></strong> <em>{get_version(1)}</em> &copy; 2011 <img src="{IMG_PATH}copyright.gif"/>{tjcode()}
+</p>
+</div>
+<script type="text/javascript">
+$(function(){
+	$(".picbig").each(function(i){
+		var cur = $(this).find('.img-wrap').eq(0);
+		var w = cur.width();
+		var h = cur.height();
+	   $(this).find('.img-wrap img').LoadImage(true, w, h,'{IMG_PATH}msg_img/loading.gif');
+	});
+})
+</script>
+</body>
+</html>

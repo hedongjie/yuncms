@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>RSS</title>
+<link href="{SKIN_PATH}default/css/style.css" type="text/css" rel="stylesheet" rev="stylesheet" media="screen"  />
+<link href="{SKIN_PATH}default/css/content.css" type="text/css" rel="stylesheet" rev="stylesheet" media="screen"  />
+<link href="{SKIN_PATH}default/css/index.css" type="text/css" rel="stylesheet" rev="stylesheet" media="screen"  />
+<!--[if IE 6]> 
+	<link href="{SKIN_PATH}default/css/ie6.css" type="text/css" rel="stylesheet" rev="stylesheet" media="screen"  />
+<![endif]-->
+<script type="text/javascript" src="{JS_PATH}jquery.min.js"></script>
+<script type="text/javascript" src="{JS_PATH}cookie.js"></script>
+</head>
+<body>
+<div class="rss-head">
+  <div class="column02">
+    <h1>Rss订阅中心</h1>
+    <p>RSS 是站点用来和其他站点之间共享内容的简易方式（也叫聚合内容）。 RSS使用XML作为彼此共享内容的标准方式。它能让别人很容易t的发现你已经更新了你的站点，并让人们很容易的追踪他们阅读的所有weblogs。 </p>
+  </div>
+</div>
+<div class="column02" style="margin-top:12px"> 
+  <!-- **************** start频道列表  ***************** -->
+  <div class="col-l-main w-160">
+    <div class="channels-title "> 频道订阅Rss </div>
+    {yun:content do="category" catid="0" order="listorder ASC"}
+    <div class="channels-list bor-9fc">
+      <ul class="fs-14 ">
+        {loop $data $r}
+        <li {if $r['catid'] == $catid} class="on"{/if}><a href="{U('content/rss',array('catid'=>$r['catid']))}">{$r[catname]}</a></li>
+        {/loop}
+      </ul>
+    </div>
+    {/yun}
+    <div class="hr-h10"></div>
+    <div class="subscribe-list bor-9fc hide">
+      <ul>
+        <li><a href="http://reader.yodao.com/#url={SITE_URL}index.php?app=content&controller=rss&catid=0" target="_blank"><img src="{IMG_PATH}dy/youdao.gif" alt="" width="111" height="17" /></a></li>
+        <li><a href="http://fusion.google.com/add?feedurl={SITE_URL}index.php?app=content&controller=rss&catid=0" target="_blank"><img src="{IMG_PATH}dy/google.gif" alt="" width="111" height="17" /></a></li>
+        <li><a href="http://www.netvibes.com/subscribe.php?url={SITE_URL}index.php?app=content&controller=rss&catid=0" target="_blank"><img src="{IMG_PATH}dy/net.gif" alt="" width="111" height="17" /></a></li>
+        <li><a href="http://www.newsgator.com/ngs/subscriber/subfext.aspx?url={SITE_URL}index.php?app=content&controller=rss&catid=0" target="_blank"><img src="{IMG_PATH}dy/news.gif" alt="" width="111" height="17" /></a></li>
+        <li><a href="http://www.rojo.com/add-subscription?resource={SITE_URL}index.php?app=content&controller=rss&catid=0" target="_blank"><img src="{IMG_PATH}dy/rojo.gif" alt="" width="111" height="17" /></a></li>
+        <li><a href="http://www.xianguo.com/subscribe.php?url={SITE_URL}index.php?app=content&controller=rss&catid=0" target="_blank"><img src="{IMG_PATH}dy/xianguo.gif" alt="" width="111" height="17" /></a></li>
+        <li><a href="http://add.my.yahoo.com/rss?url={SITE_URL}index.php?app=content&controller=rss&catid=0"><img src="{IMG_PATH}dy/yahoo.gif" alt="" width="111" height="17" /></a></li>
+        <li><a href="http://www.zhuaxia.com/add_channel.php?url={SITE_URL}index.php?app=content&controller=rss&catid=0" target="_blank"><img src="{IMG_PATH}dy/zhuaxia.gif" alt="" width="111" height="17" /></a></li>
+        <li><a href="http://www.bloglines.com/sub/{SITE_URL}index.php?app=content&controller=rss&catid=0" target="_blank"><img src="{IMG_PATH}dy/blog.gif" alt="" width="111" height="17" /></a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- **************** end频道列表  ***************** -->
+  <div class="col-r-extra"> 
+    <!-- ******************* start 频道   *********************** -->
+    <div class="w-600 f-r"> {loop $subcats $n $r}
+      <div class="bor-9fc" >
+        <div class="mode-tabs">
+          <h2 class="cor-c00">{$r['catname']}</h2>
+          <div class="f-r">
+            <div class="mode-rss f-l"><a href="{SITE_URL}index.php?app=content&controller=rss&rssid={$r[catid]}"><img src="{IMG_PATH}icon/rss.gif" width="40" height="17"/></a></div>
+            <div class="subscribe f-l" catid="{$r['catid']}">订阅到</div>
+          </div>
+        </div>
+        {yun:content do="lists" catid="$r[catid]" num="5" order="id DESC" return="info"}
+        <div class="mode-txtlink fs-14 cor-06c">
+          <ul class="mar-b-8">
+            {loop $info $v}
+            <li><a href="{if strpos($v[url],'http')===false}{$siteurl}{/if}{$v[url]}">{str_cut($v[title],'70')}</a><span class="date">{date('Y-m-d',$v[inputtime])}</span></li>
+            {/loop}
+          </ul>
+        </div>
+        {/yun} </div>
+      <div class="hr-h10"></div>
+      {/loop} </div>
+    <!-- *******************  end 频道  *********************** --> 
+  </div>
+</div>
+<div class="hr-h10"></div>
+{template "system","footer"} 
+<script type="text/javascript">
+			(function(){
+				var subscribe_list = $('.subscribe-list'),
+					subscribe = $('.subscribe'),
+					timer = null;
+				subscribe.hover(function(){
+					var t = this;
+					window.clearTimeout(timer);
+					
+					$(this).addClass('subscribe-hover');
+					
+					subscribe_list.show();
+					subscribe_list.find('a').each(function(){
+						$(this).attr('href',$(this).attr('href').replace(/catid=(\d)/,'catid='+$(t).attr('catid')).replace(/url=(.+)/,function(a,b){return escape(b)}));
+					})
+					subscribe_list.css({position:'absolute',left:$(this).offset().left - 68 + 'px',top: $(this).offset().top + 26 + 'px'});
+				
+					subscribe_list.hover(function(){
+						window.clearTimeout(timer);
+					},function(){
+						subscribe_list.hide();
+						subscribe.removeClass('subscribe-hover');
+					});
+				},function(){
+					timer = window.setTimeout(function(){
+						subscribe_list.hide();
+						subscribe.removeClass('subscribe-hover');
+					},500);
+				});
+			})();
+		</script>
+</body>
+</html>

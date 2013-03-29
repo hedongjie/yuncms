@@ -1,0 +1,17 @@
+<div class="hr-h10"></div>
+<footer>
+<div id="foot" class="column col-960">
+	<div id="foot_link"> 
+	{yun:content do="category" catid="1" num="15" order="listorder ASC"}
+	{loop $data $r}<a href="{$r[url]}" target="_blank">{$r[catname]}</a> |  {/loop}
+	{/yun}<a href="{SITE_URL}index.php?app=wap" target="_blank">手机访问</a> |  <a href="{SITE_URL}index.php?app=link" target="_blank">友情链接</a>
+	</div>
+	<p>客服电话：0531-86560763  Email：service#newsteng.com (#→@)<br />
+        Copyright @ ydmb.cn All Rights Reserved.  济南云端漫步信息技术有限公司 版权所有<br />
+		<a href="http://www.yuncms.net" target="_blank">Powered by YUNCMS V2012</a> 鲁ICP备09088162号-2{tjcode()}<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fabdac0cd14164d37e662c507662eae78' type='text/javascript'%3E%3C/script%3E"));
+</script>
+	</p>
+</div>
+</footer>

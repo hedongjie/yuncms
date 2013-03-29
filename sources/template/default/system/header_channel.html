@@ -1,0 +1,31 @@
+		<!-- *************************** start 顶部小条 ************************ -->
+		<div class="image-top">
+			<div class="column">
+				<div class="header-top">
+			<div class="login f-l">
+				<script type="text/javascript" src="{U('member/passport/mini')}"></script>
+			</div>
+			<div class="f-r sear-top">
+			<form name="search" id="search" method="GET" action="{U('search/index')}">
+			    <input type="hidden" name="app" value="search"/>
+			    <input type="hidden" name="controller" value="index"/>
+			    <input type="hidden" name="action" value="init"/>
+				<input type="hidden" name="type" value="all"/>
+			   	<p class="mode-sear"><input type="input" onfocus="this.value=(this.value=='全文检索')?'':this.value" onblur="this.value=(this.value=='')?'全文检索':this.value" name="q" value="全文检索" class="sear-box" /> <input type="submit" value="检索" class="sear-btn f-r" title="去搜索" /> </p>
+		    </form>
+			</div>
+			</div>
+			</div>
+		</div>
+		<!-- *************************** end 顶部小条 ************************ -->
+		<!-- *************************** start LOGO + 导航 ************************ -->
+		<div class="column logo-menu">
+			<div class="hr-h10"></div>
+			<div class="logo-box f-l">
+				<h1><a href="{SITE_URL}" title="回首页"><img src="{SKIN_PATH}default/images/image-logo.jpg"></a></h1>
+				<p>顶级新媒体技术提供商</p>
+			</div>
+			<div class="ad-area-3 f-r">
+				<span><script language="javascript" src="{SITE_URL}cache/poster_js/1.js"></script><!--广告：频道页顶部banner1 --></span>
+				<span><script language="javascript" src="{SITE_URL}cache/poster_js/2.js"></script><!--广告：频道页顶部banner2 --></span>
+			</div>

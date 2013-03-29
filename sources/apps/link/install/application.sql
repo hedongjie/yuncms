@@ -1,0 +1,1 @@
+INSERT INTO `yuncms_application` VALUES ('link', '友情链接', '', '0', '1.0', '', 'a:2:{s:7:"is_post";s:1:"1";s:15:"enablecheckcode";s:1:"1";}', '0', '0', '2010-05-18', '2010-05-18');
