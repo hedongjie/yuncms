@@ -28,7 +28,7 @@ class Member_settingController extends admin {
             showmessage ( L ( 'operation_success' ), HTTP_REFERER );
         } else {
             $show_scroll = true;
-            $member_setting = S ( 'member/member_setting' );
+            $member_setting = $this->db->get_setting('member');
             include $this->admin_tpl ( 'member_setting' );
         }
     }

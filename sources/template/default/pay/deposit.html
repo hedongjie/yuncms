@@ -8,14 +8,17 @@ $(function(){
 	$("#email").formValidator({onshow:"请输入email",oncorrect:"格式正确"}).regexValidator({regexp:"email",datatype:"enum",onerror:"错误的emai格式"});	
 	$("#code").formValidator({onshow:"请输入验证码",onfocus:"验证码不能为空"}).inputValidator({min:1,max:999,onerror:"验证码不能为空"}).ajaxValidator({
 	    type : "get",
-		url : "api.php?c=checkcode&a=check",
-		data :"",
+		url : "",
+		data :"m=pay&c=deposit&a=public_checkcode",
 		datatype : "html",
 		async:'false',
 		success : function(data){	
-            if(data == 1){
+            if(data == 1)
+			{
                 return true;
-			}else{
+			}
+            else
+			{
                 return false;
 			}
 		},
@@ -41,7 +44,7 @@ $(function(){
             <span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
         </div>
 {/if}
-<form name="myform" action="{SITE_URL}index.php?app=pay&controller=deposit&action=pay_recharge" method="post" id="myform">
+<form name="myform" action="{APP_PATH}index.php?m=pay&c=deposit&a=pay_recharge" method="post" id="myform">
 <table width="100%" cellspacing="0" class="table_form">
     <tr>
        <th width="80">余额：</th>        
@@ -49,12 +52,12 @@ $(function(){
     </tr>
      <tr>
 	<th>充值金额：</th>
-	<td><input name="info[price]" type="text" id="price" size="8" value="" class="input-text">&nbsp;元<span id="msgid"></span></td>
+	<td><input name="info[price]" type="text" id="price" size="8" value="{if is_numeric($_GET['price'])}{$_GET['price']}{/if}" class="input-text">&nbsp;元<span id="msgid"></span></td>
      </tr>
   <tr>
        <th>充值方式：</th>
        <td>     
-		{mk_pay_btn($pay_types)}
+		{if $pay_types}{mk_pay_btn($pay_types)}{else}本站暂未开启在线支付功能，如需帮助请联系管理员。{/if}
 	   </td>
      </tr>
   <tr>		
@@ -76,7 +79,7 @@ $(function(){
      </tr>
      <tr>
        <th>验证码：</th>
-       <td><input name="code" type="text" id="code" size="10"  class="input-text"/> {helper_form::checkcode('code_img','4',110,30)}</td>
+       <td><input name="code" type="text" id="code" size="10"  class="input-text"/> {form::checkcode('code_img','4','14',110,30)}</td>
      </tr>
      <tr>
        <td></td>
@@ -104,6 +107,8 @@ $(function(){
 			}
 		)
  	});
+	
 })
+
 </script>
 {template 'member', 'footer'}

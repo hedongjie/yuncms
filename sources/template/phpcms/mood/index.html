@@ -16,7 +16,7 @@
 </div>
 <script type="text/javascript">
 function vote(id) {
-	$.getJSON('{APP_PATH}index.php?m=mood&c=index&a=post&id={$mood_id}&k='+id+'&'+Math.random()+'&callback=?', function(data){
+	$.getJSON('{SITE_URL}index.php?app=mood&controller=index&action=post&id={$mood_id}&k='+id+'&'+Math.random()+'&callback=?', function(data){
 		if(data.status==1)	{
 			$('#mood').html(data.data);
 		}else {
@@ -24,5 +24,4 @@ function vote(id) {
 		}
 	})
 }
-
 </script>                                                           

@@ -1,6 +1,6 @@
 <?php
 defined('IN_YUNCMS') or exit('No permission resources.');
-Loader::func('pay:global');
+Loader::helper('pay:global');
 /**
  *
  * @author Tongle Xu <xutongle@gmail.com> 2012-6-12
@@ -89,7 +89,7 @@ class receipts {
         if (empty($data['userid']) || empty($data['username'])) {
             if (defined('IN_ADMIN')) {
                 return false;
-            } elseif (!$data['userid'] = cookie_get('_userid') || !$data['username'] = cookie_get('_username')) {
+            } elseif (!$data['userid'] = cookie('_userid') || !$data['username'] = cookie('_username')) {
                 return false;
             } else {
                 return false;
@@ -98,7 +98,7 @@ class receipts {
 
         //检查op_userid和op_username并偿试再次的获取
         if (defined('IN_ADMIN') && empty($data['adminnote'])) {
-            $data['adminnote'] = cookie_get('admin_username');
+            $data['adminnote'] = cookie('admin_username');
         }
 
         //数据库连接
@@ -119,7 +119,7 @@ class receipts {
         //进入数据库操作
         $insertid = self::$db->insert($data,true);
         if($insertid && $data['status'] == 'succ') {
-            return $member_db->update($sql, array('userid'=>$data['userid'], 'username'=>$data['username'])) ? true : false;
+            return $member_db->where(array('userid'=>$data['userid'], 'username'=>$data['username']))->update($sql) ? true : false;
         } else {
             return false;
         }

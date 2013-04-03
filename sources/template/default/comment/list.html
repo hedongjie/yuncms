@@ -1,145 +1,80 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>评论：{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
-<link href="{SKIN_PATH}css/style.css" type="text/css" rel="stylesheet" rev="stylesheet" media="screen"  />
-<link href="{SKIN_PATH}css/content.css" type="text/css" rel="stylesheet" rev="stylesheet" media="screen"  />
-<!--[if IE 6]> 
-<link href="{SKIN_PATH}css/ie6.css" type="text/css" rel="stylesheet" rev="stylesheet" media="screen"  />
-<![endif]-->
-<script type="text/javascript" src="{JS_PATH}jquery.min.js"></script>
-</head>
-<body>
-{template "system","header"}
-<div class="hr-h10"></div>
-<div class="column ad-area-1">
-  <div class="col-l-main"><script language="javascript" src="{SITE_URL}cache/poster_js/6.js"></script><!--内容页顶部banner1 --></div>
-  <div class="col-r-extra"><script language="javascript" src="{SITE_URL}cache/poster_js/7.js"></script><!--内容页顶部banner2 --></div>
-</div>
-<div class="hr-h10"></div>
-<div class="column">
-  <div class="mode-position"> <span><a href="{SITE_URL}">首页</a></span> 评论 </div>
-</div>
+{template "content","header"}
 {yun:comment do="get_comment" commentid="$commentid"}
 {php $comment = $data;}
 {/yun}
-<div class="hr-h6"></div>
-<div class="column">
-  <div class="col-l-main w-720 bor-9fc">
-    <div class="comment-title">
-      <h1>评论：<a href="{if $comment[url]}{$comment[url]}{else}{$url}{/if}">{if $comment[title]}{$comment[title]}{else}{$title}{/if}</a></h1>
-    </div>
-    <div id="comment_box">
-      <div class="mar-tb-10 padd-lr-20 pl-post"><a href="#comment" class="italk-pl f-l" >我要评论</a><span class="f-l mar-t-10 mar-l-10">(评论<cite class="commentTotal">{if $comment[total]}{$comment[total]}{else}0{/if}</cite>条)</span>
-        <div class="pagination f-r" id="paginationTop"><!--上部分页--></div>
-        <div class="clear"></div>
-      </div>
-      <div class="padd-lr-20">
-        <h2 class="hot-pl-title">热门评论</h2>
-        <div class="hr-h10"></div>
-        {yun:comment do="lists" commentid="$commentid" hot="1" num="10"}
-        <dl class="mode-comment">
-          {loop $data $r}
-          <dt><span class="user-info">{get_ip_area($r[ip])} {if $r[userid]}{get_nickname($r[userid])}{else}{$r[username]}{/if} </span><span class="post-time">{format::date($r[creat_at], 1)}</span></dt>
-          <dd class="citation-wrap fs-14">{$r[content]}</dd>
-          <dd>
-            <div class="relay-t f-r"> <span class="f-l" onclick="reply({$r[id]}, '{$commentid}')">回复</span> <a href="javascript:void(0)" onclick="support({$r[id]}, '{$commentid}')">支持</a>（<font id="support_{$r[id]}">{$r[support]}</font>） </div>
-            <div class="clear"></div>
-            <div id="replyBox_{$r[id]}" class="replyBox"></div>
-            <div class="hr-dotted hr-h10"></div>
-          </dd>
-          {/loop}
-        </dl>
-        {/yun} </div>
-      <div class="padd-lr-20">
-        <h2 class="hot-pl-title">评论列表</h2>
-        <div class="hr-h10"></div>
-        {yun:comment do="lists" commentid="$commentid" page="$_GET[page]" hot="0" num="2"}
-        <dl class="mode-comment">
-          {loop $data $r}
-          <dt><span class="user-info">{get_ip_area($r[ip])} {if $r[userid]}{get_nickname($r[userid])}{else}{$r[username]}{/if} </span><span class="post-time">{format::date($r[creat_at], 1)}</span></dt>
-          <dd class="citation-wrap fs-14">{$r[content]}</dd>
-          <dd>
-            <div class="relay-t f-r"><span class="f-l" onclick="reply({$r[id]}, '{$commentid}')">回复</span> <a href="javascript:void(0)" onclick="support({$r[id]}, '{$commentid}')">支持</a>（<font id="support_{$r[id]}">{$r[support]}</font>）</div>
-            <div class="clear"></div>
-            <div id="replyBox_{$r[id]}" class="replyBox"></div>
-            <div class="hr-dotted hr-h10"></div>
-          </dd>
-          {/loop}
-        </dl>
-      </div>
-      <div class="padd-lr-20">
-        <div class="pagination f-r" id="pages" >{$pages}</div>
-      </div>
-      {/yun}
-      <div class="hr-h10"></div>
-      <div class="post-comment-area padd-lr-20">
-        <form action="?app=comment&controller=index&action=post&commentid={$commentid}" method="POST" onsubmit="return commentSubmit(this);" id="commentForm">
-          <input type="hidden" name="title" value="{urlencode(($comment[title] ? $comment[title] : $title))}">
-          <input type="hidden" name="url" value="{urlencode(($comment[url] ? $comment[url] : $url))}">
-          <div class="hr-h10"></div>
-          <textarea class="textarea textarea-w663" name="content" cols="58" rows="10"></textarea>
-          <div class="user-writeinfo"> <span class="f-r"> {if $setting[code]}
-            <label>验证码：
-              <input type="text" name="code"  class="input-text" id="yzmText" onfocus="var offset = $(this).offset();$('#yzm').css({'left': +offset.left-8, 'top': +offset.top-$('#yzm').height()});$('#yzm').show();$('#yzmText').data('hide', 1)" onblur='$("#yzmText").data("hide", 0);setTimeout("hide_code()", 3000)' />
-            </label>
-            <div id="yzm" class="yzm">{form::checkcode()}<br />
-              点击图片更换</a></div>
-            {/if}
-            <input type="submit" class="post-btn" value="发表评论" />
-            </span> {if $userid} <span class="f-l">用户名： <b>{get_nickname()}</b></span> <span class="f-l mar-l-10 padd-3"><a href="{SITE_URL}index.php?app=member&controller=index&action=logout&forward={urlencode(($comment[url] ? $comment[url] : $url))}"  target="_top">退出</a></span> {else} <span class="f-l mar-l-10 padd-3"><a href="{SITE_URL}index.php?app=member&controller=index&action=login&forward={urlencode(($comment[url] ? $comment[url] : $url))}" target="_top" class="blue">登录</a><span> | </span><a href="{SITE_URL}index.php?app=member&controller=index&action=register" class="blue"  target="_top">注册</a> {if !$setting[guest]}<span style="color:red">需要登陆才可发布评论</span>{/if}
-            {/if} </span> </div>
-        </form>
-        <div class="hr-h10"></div>
-        <style type="text/css">
-							.look-content{ padding:10px;border:1px dashed #ffbf7a; background:#fffced; margin:10px auto}
-							.look-content ul{ color:#666}
-						</style>
-        <div class="look-content">
-          <h2>请您注意：</h2>
-          <ul>
-            <li>自觉遵守：爱国、守法、自律、真实、文明的原则</li>
-            <li>尊重网上道德，遵守《全国人大常委会关于维护互联网安全的决定》及中华人民共和国其他各项有关法律法规</li>
-            <li>严禁发表危害国家安全，破坏民族团结、国家宗教政策和社会稳定，含侮辱、诽谤、教唆、淫秽等内容的作品</li>
-            <li>承担一切因您的行为而直接或间接导致的民事或刑事法律责任</li>
-            <li>您在本站评论发表的作品，本站有权在网站内保留、转载、引用或者删除</li>
-            <li>参与本评论即表明您已经阅读并接受上述条款</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- rightSide -->
-  <div class="col-r-extra w-230"> 
-    <!-- start 热门评论 -->
-    <div class="bor-9fc">
-      <div class="mode-tabs padd-r-0">
-        <h2 class="cor-c00">评论排行</h2>
-      </div>
-      <div class="padd-tb-8">
-        <div class="hot-subject-wrap" id="rank_day">
-          <ul>
-            <!--{yun:comment do="bang" cache="3600"}-->{loop $data $r}
-            <li> <span>{$r[total]}</span>
-              <p><a href="{$r[url]}" title="{$r[title]}">{str_cut($r[title], 50)}</a></p>
-              <div class="hr-dotted hr-h6 hot-subject-hr"></div>
-            </li>
-            {/loop}
-            {/yun}
-          </ul>
-        </div>
-      </div>
-    </div>
-    <!-- end 热门评论 -->
-    <div class="hr-h10"></div>
-  </div>
-  <!-- //rightSide --> 
+<div class="main">
+        <h2 class="comment-title blue"><a href="{if $comment[url]}{$comment[url]}{else}{$url}{/if}">{if $comment[title]}{$comment[title]}{else}{$title}{/if}</a> <a href="#comment" class="f12 fn"><font color="#FF0000">[我来说两句]</font></a></h2>
+        <div class="comment_button"><a href="{APP_PATH}index.php?m=comment&c=index&a=init&commentid={$commentid}&title={urlencode(($comment[title] ? $comment[title] : $title))}&url={urlencode(($comment[url] ? $comment[url] : $url))}&hot=0"{if empty($hot)} class="on"{/if}>最新</a> <a href="{APP_PATH}index.php?m=comment&c=index&a=init&commentid={$commentid}&title={urlencode(($comment[title] ? $comment[title] : $title))}&url={urlencode(($comment[url] ? $comment[url] : $url))}&hot=1"{if $hot} class="on"{/if}>最热</a></div> 	
+	<div class="col-left">
+       <div class="comment">
+       <h4 class="f14">评论列表<span class="f12 fn">（评论 <font color="red">{if $comment[total]}{$comment[total]}{else}0{/if}</font>）以下网友评论只代表网友个人观点，不代表本站观点。</span></h4>
+{pc:comment action="lists" commentid="$commentid" siteid="$siteid" page="$_GET[page]" hot="$hot" num="20"}
+{loop $data $r}
+    <h5 class="title fn">{direction($r[direction])} <font color="#FF0000">{Format::date($r[creat_at], 1)}</font> {if $r[userid]}{get_nickname($r[userid])}{else}{$r[username]}{/if} </h5>
+    <div class="content">{$r[content]}
+	<div class="rt"><a href="javascript:void(0)" onclick="reply({$r[id]}, '{$commentid}')">回复</a>  <a href="javascript:void(0)" onclick="support({$r[id]}, '{$commentid}')">支持</a>（<font id="support_{$r[id]}">{$r[support]}</font>）
+	</div>
+	<div id="reply_{$r[id]}" style="display:none"></div>
+	</div>
+	
+  <div class="bk30 hr mb8"></div>
+  {/loop}
+ 
+ 
 </div>
-<div class="hr-h6"></div>
+ <div id="pages" class="text-r">{$pages}</div>
+ {/pc}
+<div class="bk10"></div><div class="comment-form">
+<form action="{APP_PATH}index.php?m=comment&c=index&a=post&commentid={$commentid}" method="post">
+<input type="hidden" name="title" value="{urlencode(($comment[title] ? $comment[title] : $title))}">
+<input type="hidden" name="url" value="{urlencode(($comment[url] ? $comment[url] : $url))}">
+      <a name="comment"></a>
+      	<h5><strong>我来说两句</strong></h5>
+        <div class="posn">我的态度：<input type="radio" name="direction" value="1" /> <img src="{IMG_PATH}icon/zheng.png" /> <input type="radio" name="direction" value="2" /> <img src="{IMG_PATH}icon/fan.png" /> <input type="radio" name="direction" value="3"  /> <img src="{IMG_PATH}icon/zhong.png" />
+</div>
+        <textarea rows="8" cols="80" name="content"></textarea><br>
+		{if $setting[code]}
+		
+		  <label>验证码：<input type="text" name="code"  class="input-text" id="yzmText" onfocus="var offset = $(this).offset();$('#yzm').css({'left': +offset.left-8, 'top': +offset.top-$('#yzm').height()});$('#yzm').show();$('#yzmText').data('hide', 1)" onblur='$("#yzmText").data("hide", 0);setTimeout("hide_code()", 3000)' /></label>
+		  <div id="yzm" class="yzm">{form::checkcode()}<br />点击图片更换</a></div>
+        <div class="bk10"></div>
+		{/if}
+        <div class="btn"><input type="submit" value="发表评论" /></div>&nbsp;&nbsp;&nbsp;&nbsp;{if $userid}{get_nickname()} <a href="{APP_PATH}index.php?m=member&c=index&a=logout&forward={urlencode(get_url())}">退出</a>{else}<a href="{APP_PATH}index.php?m=member&c=index&a=login&forward={urlencode(get_url())}" class="blue">登录</a><span> | </span><a href="{APP_PATH}index.php?m=member&c=index&a=register" class="blue">注册</a>  {if !$setting[guest]}<span style="color:red">需要登陆才可发布评论</span>{/if}{/if}
+	</form>
+<style type="text/css">
+.look-content{ padding:10px;border:1px dashed #ffbf7a; background:#fffced; margin:10px auto}
+.look-content ul{ color:#666}
+</style>
+            <div class="look-content">
+            <h6>请您注意：</h6>
+                <ul>
+                    <li>自觉遵守：爱国、守法、自律、真实、文明的原则</li>
+                    <li>尊重网上道德，遵守《全国人大常委会关于维护互联网安全的决定》及中华人民共和国其他各项有关法律法规</li>
+                    <li>严禁发表危害国家安全，破坏民族团结、国家宗教政策和社会稳定，含侮辱、诽谤、教唆、淫秽等内容的作品</li>
+                    <li>承担一切因您的行为而直接或间接导致的民事或刑事法律责任</li>
+                    <li>您在本站评论发表的作品，本站有权在网站内保留、转载、引用或者删除</li>
+                    <li>参与本评论即表明您已经阅读并接受上述条款</li>
+                </ul>
+            </div>
+      </div>
+  </div>
+    <div class="col-auto">
+        <div class="box">
+            <h5 class="title-2">评论排行</h5>
+            {pc:comment action="bang" cache="3600"}
+            <ul class="content list f12 lh22">
+				{loop $data $r}
+                <li>·<a href="{$r[url]}" title="{$r[title]}">{str_cut($r[title], 26)}</a>({$r[total]})</li>
+				{/loop}
+            </ul>
+            {/pc}
+        </div>
+        <div class="bk10"></div>
+    </div>
+</div>
 <script type="text/javascript">
 function support(id, commentid) {
-	$.getJSON('{SITE_URL}index.php?app=comment&controller=index&action=support&format=jsonp&commentid='+commentid+'&id='+id+'&callback=?', function(data){
+	$.getJSON('{APP_PATH}index.php?m=comment&c=index&a=support&format=jsonp&commentid='+commentid+'&id='+id+'&callback=?', function(data){
 		if(data.status == 1) {
 			$('#support_'+id).html(parseInt($('#support_'+id).html())+1);
 		} else {
@@ -149,8 +84,8 @@ function support(id, commentid) {
 }
 
 function reply(id,commentid) {
-	var str = '<div id="replyBox" class="post-comment-area italk-area re-italk-area"><form action="{SITE_URL}index.php?app=comment&controller=index&action=post&commentid='+commentid+'&id='+id+'" method="post"><textarea class="textarea textarea-w630" cols="58" rows="10" name="content" name="content"></textarea><div class="user-writeinfo"><span class="f-r">{if $setting[code]}<label>验证码：<input type="text" name="code"  class="input-text" onfocus="var offset = $(this).offset();$(\'#yzm\').css({\'left\': +offset.left-8, \'top\': +offset.top-$(\'#yzm\').height()});$(\'#yzm\').show();$(\'#yzmText\').data(\'hide\', 1)" onblur=\'$("#yzmText").data("hide", 0);setTimeout("hide_code()", 3000)\' /></label>{/if}  <input type="submit" class="post-btn p-pl" value="发表评论" /></span><span class="f-l">{if $userid}{get_nickname()} <a href="{SITE_URL}index.php?app=member&controller=passport&a=logout&forward={urlencode(get_url())}">退出</a>{else}<a href="{SITE_URL}index.php?app=member&controller=index&action=login&forward={urlencode(get_url())}" class="blue">登录</a> | <a href="{SITE_URL}index.php?app=member&controller=passport&action=register" class="blue">注册</a>  {if !$setting[guest]}<span style="color:red">需要登陆才可发布评论</span>{/if}{/if}</span></div></form></div>';
-	$('#replyBox_'+id).html(str).toggle();
+	var str = '<form action="{APP_PATH}index.php?m=comment&c=index&a=post&commentid='+commentid+'&id='+id+'" method="post"><textarea rows="10" style="width:100%" name="content"></textarea>{if $setting[code]}<label>验证码：<input type="text" name="code"  class="input-text" onfocus="var offset = $(this).offset();$(\'#yzm\').css({\'left\': +offset.left-8, \'top\': +offset.top-$(\'#yzm\').height()});$(\'#yzm\').show();$(\'#yzmText\').data(\'hide\', 1)" onblur=\'$("#yzmText").data("hide", 0);setTimeout("hide_code()", 3000)\' /></label>{/if}  <div class="btn"><input type="submit" value="发表评论" /></div>&nbsp;&nbsp;&nbsp;&nbsp;{if $userid}{get_nickname()} <a href="{APP_PATH}index.php?m=member&c=index&a=logout&forward={urlencode(get_url())}">退出</a>{else}<a href="{APP_PATH}index.php?m=member&c=index&a=login&forward={urlencode(get_url())}" class="blue">登录</a> | <a href="{APP_PATH}index.php?m=member&c=index&a=register" class="blue">注册</a>  {if !$setting[guest]}<span style="color:red">需要登陆才可发布评论</span>{/if}{/if}</form>';
+	$('#reply_'+id).html(str).toggle();
 }
 
 function hide_code() {
@@ -159,5 +94,4 @@ function hide_code() {
 	}
 }
 </script>
-<div class="hr-h10"></div>
-{template "system","footer"}
+{template "content","footer"}

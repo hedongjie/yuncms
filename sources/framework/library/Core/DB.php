@@ -470,7 +470,7 @@ abstract class Core_DB {
 					}
 				} elseif (preg_match ( '/BETWEEN/i', $val [0] )) { // BETWEEN运算
 					$data = is_string ( $val [1] ) ? explode ( ',', $val [1] ) : $val [1];
-					$where_str .= ' (' . $key . ' ' . strtoupper ( $val [0] ) . ' ' . $this->parse_value ( $data [0] ) . ' AND ' . $this->parseValue ( $data [1] ) . ' )';
+					$where_str .= ' (' . $key . ' ' . strtoupper ( $val [0] ) . ' ' . $this->parse_value ( $data [0] ) . ' AND ' . $this->parse_value ( $data [1] ) . ' )';
 				} else {
 					throw_exception ( 'Express error:' . $val [0] );
 				}

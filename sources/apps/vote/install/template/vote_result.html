@@ -2,7 +2,7 @@
 <link href="{$CSS_PATH}vote.css" rel="stylesheet" type="text/css" />
 <!--main-->
 <div class="main tps">
-<div class="crumbs"><a href="{SITE_URL}">首页</a><span> &gt; </span> <a href="{U('vote/index/lists')}">投票</a>  </div>
+<div class="crumbs"><a href="{SITE_URL}">首页</a><span> &gt; </span> <a href="{SITE_URL}index.php?app=vote$action=lists">投票</a>  </div>
 <div class="vote_result">
     	<div class="tit"><span class="r">总票数：<strong>{$vote_data['total']}</strong></span><h5>{$subject}</h5></div>
         <div class="c_box wrap">
@@ -15,13 +15,11 @@
        		{else}
        		{php $per=intval($vote_data[$r['optionid']]/$vote_data['total']*100);}
        		{/if}
-       		
-       		 
               <tr>
               	<th>{$i}</th>
                 <td class="tp_tit">{$r['option']}</td>
                 <td class="tdcol3">{$per} %</td>
-                <td><div><img src="statics/images/vote/tit_cs.jpg" width="{$per}%" /></div></td>
+                <td><div><img src="{$IMG_PATH}vote/tit_cs.jpg" width="{$per}%" /></div></td>
                 <td class="tdcol3">{php echo $vote_data[$r['optionid']]==''? 0:$vote_data[$r['optionid']]} 票</td>
               </tr>
             {/loop}  
@@ -30,11 +28,11 @@
         </div>
     </div>
     <div class="vote_listt">
-    	<div class="tit"><span class="r"><a href="{U('vote/index/lists')}">查看更多>></a></span><h5>其他投票</h5></div>
+    	<div class="tit"><span class="r"><a href="{APP_PATH}index.php?app=vote&action=lists">查看更多>></a></span><h5>其他投票</h5></div>
         <ul class="wrap licol2 icon3j">
               {yun:vote do="other_vote" catid="$catid" num="8" order="subjectid DESC"}
 				{loop $data $r}
-				 <li><a title="{$r['subject']}" href="{APP_PATH}index.php?m=vote&c=index&a=show&show_type=1&subjectid={$r['subjectid']}&siteid={$siteid}">{$r['subject']}</a><span><font color="#1E50A0">(得票数: {$r['votenumber']})</font></span></li>
+				 <li><a title="{$r['subject']}" href="{APP_PATH}index.php?app=vote&action=show&show_type=1&subjectid={$r['subjectid']}">{$r['subject']}</a><span><font color="#1E50A0">(得票数: {$r['votenumber']})</font></span></li>
 				{/loop}
 			 {/yun}
         </ul>

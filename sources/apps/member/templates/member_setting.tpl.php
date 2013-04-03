@@ -81,15 +81,8 @@ $(function(){
 		<tr>
 			<td width="200"><?php echo L('mobile_checktype')?></td>
 			<td>
-				<input type="radio" name="info[mobile_checktype]"  class="input-radio" <?php if($member_setting['mobile_checktype']=='1') {?>checked<?php }?> value='1' <?php if($sms_disabled) {?>disabled<?php }?> onclick="$('#sendsms_titleid').show();">&nbsp;<?php echo L('user_sendsms')?>&nbsp;
-				<input type="radio" name="info[mobile_checktype]"  class="input-radio" <?php if($member_setting['mobile_checktype']=='2') {?>checked<?php }?> value='2' <?php if($sms_disabled) {?>disabled<?php }?> onclick="$('#sendsms_titleid').hide();">&nbsp;<?php echo L('get_verify')?>&nbsp;
+				<input type="radio" name="info[mobile_checktype]"  class="input-radio" <?php if($member_setting['mobile_checktype']=='1') {?>checked<?php }?> value='2' <?php if($sms_disabled) {?>disabled<?php }?> onclick="$('#sendsms_titleid').hide();">&nbsp;<?php echo L('get_verify')?>&nbsp;
 				<input type="radio" name="info[mobile_checktype]"  class="input-radio" <?php if($member_setting['mobile_checktype']=='0' ||$sms_disabled ) {?>checked<?php }?> value='0' onclick="$('#sendsms_titleid').hide();">&nbsp;<?php echo L('no_checksms')?>
-			</td>
-		</tr>
-		<tr id="sendsms_titleid" <?php if($member_setting['mobile_checktype']!='1'){?> style="display: none; " <?php }?>>
-			<td width="200"><?php echo L('user_sendsms_title')?></td>
-			<td>
-			<input type="text" name="info[user_sendsms_title]" id="user_sendsms_title" class="input-text" size="50" value="<?php echo $member_setting['user_sendsms_title'];?>">
 			</td>
 		</tr>
 		<tr>

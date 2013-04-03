@@ -1,14 +1,30 @@
 {template 'member', 'header'}
 <script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script>
 <script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
+<link href="{CSS_PATH}dialog.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="{JS_PATH}dialog.js"></script>
 <script language="JavaScript">
 <!--
 $(function(){
-	$.formValidator.initConfig({
-		autotip:true,
-		formid:"myform",
-		onerror:function(msg){}
-	});
+	$.formValidator.initConfig({autotip:true,formid:"myform",onerror:function(msg){}});
+	$("#nickname").formValidator({onshow:"{L('input').L('nickname')}",onfocus:"{L('nickname').L('between_2_to_20')}"}).inputValidator({min:2,max:20,onerror:"{L('nickname').L('between_2_to_20')}"}).regexValidator({regexp:"ps_username",datatype:"enum",onerror:"{L('nickname').L('format_incorrect')}"}).ajaxValidator({
+	    type : "get",
+		url : "",
+		data :"m=member&c=index&a=public_checknickname_ajax&userid={$memberinfo[userid]}",
+		datatype : "html",
+		async:'false',
+		success : function(data){
+            if( data == "1" ) {
+                return true;
+			} else {
+                return false;
+			}
+		},
+		buttons: $("#dosubmit"),
+		onerror : "{L('already_exist')}",
+		onwait : "{L('connecting_please_wait')}"
+	}).defaultPassed();
+
 	{$formValidator}
 });
 

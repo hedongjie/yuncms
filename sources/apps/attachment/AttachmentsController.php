@@ -3,10 +3,11 @@
  * @author Tongle Xu <xutongle@gmail.com> 2012-5-31
  * @copyright Copyright (c) 2003-2103 yuncms.net
  * @license http://leaps.yuncms.net
- * @version $Id: AttachmentsController.php 138 2013-03-25 02:21:20Z 85825770@qq.com $
+ * @version $Id: AttachmentsController.php 281 2013-04-02 04:05:16Z 85825770@qq.com $
  */
 defined ( 'IN_YUNCMS' ) or exit ( 'No permission resources.' );
 Loader::session ();
+error_reporting ( E_ERROR );
 class AttachmentsController {
 
 	private $att_db;

@@ -16,11 +16,11 @@ class Core_Filter {
 	}
 
 	public static function input() {
-		if (! get_magic_quotes_gpc ()) {
-			$_POST = new_addslashes ( $_POST );
-			$_GET = new_addslashes ( $_GET );
-			$_REQUEST = new_addslashes ( $_REQUEST );
-			$_COOKIE = new_addslashes ( $_COOKIE );
+		if (get_magic_quotes_gpc()){
+			$_POST = new_stripslashes($_POST);
+			$_GET = new_stripslashes($_GET);
+			$_COOKIE = new_stripslashes($_COOKIE);
+			$_REQUEST = new_stripslashes($_REQUEST);
 		}
 	}
 

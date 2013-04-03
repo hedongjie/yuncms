@@ -310,6 +310,22 @@ INSERT INTO `#table#admin_menu` VALUES(233, 'linkage', 54, 2, 'admin', 'linkage'
 INSERT INTO `#table#admin_menu` VALUES(234, 'linkageadd', 233, 3, 'admin', 'linkage', 'add', '', 0, '0');
 INSERT INTO `#table#admin_menu` VALUES(235, 'linkageedit', 233, 3, 'admin', 'linkage', 'edit', '', 0, '0');
 INSERT INTO `#table#admin_menu` VALUES(236, 'linkagedel', 233, 3, 'admin', 'linkage', 'delete', '', 0, '0');
+INSERT INTO `#table#admin_menu` VALUES(237, 'ucenter_setting', 174, 2, 'member', 'Ucenter_setting', 'init', '', 0, '1');
+INSERT INTO `#table#admin_menu` VALUES(238, 'add_special', 145, 3, 'special', 'special', 'add', '', 0, '1');
+INSERT INTO `#table#admin_menu` VALUES(239, 'edit_special', 145, 3, 'special', 'special', 'edit', '', 0, '0');
+INSERT INTO `#table#admin_menu` VALUES(240, 'special_list', 145, 3, 'special', 'special', 'init', '', 0, '0');
+INSERT INTO `#table#admin_menu` VALUES(241, 'special_elite', 145, 3, 'special', 'special', 'elite', '', 0, '0');
+INSERT INTO `#table#admin_menu` VALUES(242, 'delete_special', 145, 3, 'special', 'special', 'delete', '', 0, '0');
+INSERT INTO `#table#admin_menu` VALUES(243, 'special_listorder', 145, 3, 'special', 'special', 'listorder', '', 0, '0');
+INSERT INTO `#table#admin_menu` VALUES(244, 'creat_html', 145, 3, 'special', 'special', 'html', '', 0, '1');
+INSERT INTO `#table#admin_menu` VALUES(245, 'create_special_list', 145, 3, 'special', 'special', 'create_special_list', '', 0, '1');
+INSERT INTO `#table#admin_menu` VALUES(246, 'special_content_list', 145, 3, 'special', 'content', 'init', '', 0, '0');
+INSERT INTO `#table#admin_menu` VALUES(247, 'special_content_add', 246, 4, 'special', 'content', 'add', '', 0, '0');
+INSERT INTO `#table#admin_menu` VALUES(248, 'special_content_edit', 246, 4, 'special', 'content', 'edit', '', 0, '0');
+INSERT INTO `#table#admin_menu` VALUES(249, 'special_content_delete', 246, 4, 'special', 'content', 'delete', '', 0, '0');
+INSERT INTO `#table#admin_menu` VALUES(250, 'special_content_listorder', 246, 4, 'special', 'content', 'listorder', '', 0, '0');
+INSERT INTO `#table#admin_menu` VALUES(251, 'special_content_import', 246, 4, 'special', 'content', 'import', '', 0, '0');
+INSERT INTO `#table#admin_menu` VALUES(252, 'special_content_list', 246, 4, 'special', 'content', 'init', '', 0, '0');
 -- ----------------------------
 -- Table structure for `#table#admin_panel`
 -- ----------------------------
@@ -379,10 +395,10 @@ CREATE TABLE `#table#application` (
 -- ----------------------------
 -- Records of #table#application
 -- ----------------------------
-INSERT INTO `#table#application` VALUES('admin', '管理核心', '', 1, '', '', 'a:17:{s:9:"site_name";s:6:"YUNCMS";s:10:"site_title";s:6:"YUNCMS";s:8:"keywords";s:6:"YUNCMS";s:11:"description";s:6:"YUNCMS";s:10:"copyrights";s:6:"YUNCMS";s:3:"icp";s:6:"YUNCMS";s:19:"maxloginfailedtimes";s:0:"";s:15:"live_ifonserver";s:5:"false";s:12:"live_boxopen";s:5:"false";s:11:"live_boxtip";s:5:"false";s:11:"companyname";s:0:"";s:12:"contact_name";s:0:"";s:6:"mobile";s:0:"";s:9:"telephone";s:0:"";s:2:"qq";s:0:"";s:7:"address";s:0:"";s:5:"email";s:0:"";}', 0, 0, '2012-05-18', '2012-05-18');
+INSERT INTO `#table#application` VALUES('admin', '管理核心', '', 1, '', '', 'array (\n  ''site_name'' => ''YUNCMS'',\n  ''site_title'' => ''YUNCMS'',\n  ''keywords'' => ''YUNCMS'',\n  ''description'' => ''YUNCMS'',\n  ''copyrights'' => ''YUNCMS'',\n  ''icp'' => ''YUNCMS'',\n  ''maxloginfailedtimes'' => '''',\n  ''live_ifonserver'' => ''true'',\n  ''live_boxopen'' => ''true'',\n  ''live_boxtip'' => ''true'',\n  ''companyname'' => '''',\n  ''contact_name'' => '''',\n  ''mobile'' => '''',\n  ''telephone'' => '''',\n  ''qq'' => '''',\n  ''address'' => '''',\n  ''email'' => '''',\n)', 0, 0, '2012-05-18', '2012-05-18');
 INSERT INTO `#table#application` VALUES('content', '内容', '', 1, '1.0', '', '', 0, 0, '2012-05-18', '2012-05-18');
-INSERT INTO `#table#application` VALUES('member', '会员', '', 1, '1.0', '会员', 'a:16:{s:13:"allowregister";s:1:"1";s:11:"choosemodel";s:1:"1";s:10:"validation";s:1:"2";s:14:"enablcodecheck";s:1:"1";s:16:"mobile_checktype";s:1:"0";s:18:"user_sendsms_title";s:0:"";s:12:"showapppoint";s:1:"1";s:14:"rmb_point_rate";s:2:"10";s:12:"defualtpoint";s:1:"0";s:13:"defualtamount";s:1:"0";s:15:"showregprotocol";s:1:"1";s:11:"regprotocol";s:6380:"      欢迎您注册成为YUNCMS用户\n请仔细阅读下面的协议，只有接受协议才能继续进行注册。 \n1．服务条款的确认和接纳\n　　YUNCMS用户服务的所有权和运作权归YUNCMS拥有。YUNCMS所提供的服务将按照有关章程、服务条款和操作规则严格执行。用户通过注册程序点击“我同意” 按钮，即表示用户与YUNCMS达成协议并接受所有的服务条款。\n2． YUNCMS服务简介\n　　YUNCMS通过国际互联网为用户提供新闻及文章浏览、图片浏览、软件下载、网上留言和BBS论坛等服务。\n　　用户必须： \n　　1)购置设备，包括个人电脑一台、调制解调器一个及配备上网装置。 \n　　2)个人上网和支付与此服务有关的电话费用、网络费用。\n　　用户同意： \n　　1)提供及时、详尽及准确的个人资料。 \n　　2)不断更新注册资料，符合及时、详尽、准确的要求。所有原始键入的资料将引用为注册资料。 \n　　3)用户同意遵守《中华人民共和国保守国家秘密法》、《中华人民共和国计算机信息系统安全保护条例》、《计算机软件保护条例》等有关计算机及互联网规定的法律和法规、实施办法。在任何情况下，YUNCMS合理地认为用户的行为可能违反上述法律、法规，YUNCMS可以在任何时候，不经事先通知终止向该用户提供服务。用户应了解国际互联网的无国界性，应特别注意遵守当地所有有关的法律和法规。\n3． 服务条款的修改\n　　YUNCMS会不定时地修改服务条款，服务条款一旦发生变动，将会在相关页面上提示修改内容。如果您同意改动，则再一次点击“我同意”按钮。 如果您不接受，则及时取消您的用户使用服务资格。\n4． 服务修订\n　　YUNCMS保留随时修改或中断服务而不需知照用户的权利。YUNCMS行使修改或中断服务的权利，不需对用户或第三方负责。\n5． 用户隐私制度\n　　尊重用户个人隐私是YUNCMS的 基本政策。YUNCMS不会公开、编辑或透露用户的注册信息，除非有法律许可要求，或YUNCMS在诚信的基础上认为透露这些信息在以下三种情况是必要的： \n　　1)遵守有关法律规定，遵从合法服务程序。 \n　　2)保持维护YUNCMS的商标所有权。 \n　　3)在紧急情况下竭力维护用户个人和社会大众的隐私安全。 \n　　4)符合其他相关的要求。 \n6．用户的帐号，密码和安全性\n　　一旦注册成功成为YUNCMS用户，您将得到一个密码和帐号。如果您不保管好自己的帐号和密码安全，将对因此产生的后果负全部责任。另外，每个用户都要对其帐户中的所有活动和事件负全责。您可随时根据指示改变您的密码，也可以结束旧的帐户重开一个新帐户。用户同意若发现任何非法使用用户帐号或安全漏洞的情况，立即通知YUNCMS。\n7． 免责条款\n　　用户明确同意网站服务的使用由用户个人承担风险。 　　 \n　　YUNCMS不作任何类型的担保，不担保服务一定能满足用户的要求，也不担保服务不会受中断，对服务的及时性，安全性，出错发生都不作担保。用户理解并接受：任何通过YUNCMS服务取得的信息资料的可靠性取决于用户自己，用户自己承担所有风险和责任。 \n8．有限责任\n　　YUNCMS对任何直接、间接、偶然、特殊及继起的损害不负责任。\n9． 不提供零售和商业性服务 \n　　用户使用网站服务的权利是个人的。用户只能是一个单独的个体而不能是一个公司或实体商业性组织。用户承诺不经YUNCMS同意，不能利用网站服务进行销售或其他商业用途。\n10．用户责任 \n　　用户单独承担传输内容的责任。用户必须遵循： \n　　1)从中国境内向外传输技术性资料时必须符合中国有关法规。 \n　　2)使用网站服务不作非法用途。 \n　　3)不干扰或混乱网络服务。 \n　　4)不在论坛BBS或留言簿发表任何与政治相关的信息。 \n　　5)遵守所有使用网站服务的网络协议、规定、程序和惯例。\n　　6)不得利用本站危害国家安全、泄露国家秘密，不得侵犯国家社会集体的和公民的合法权益。\n　　7)不得利用本站制作、复制和传播下列信息： \n　　　1、煽动抗拒、破坏宪法和法律、行政法规实施的；\n　　　2、煽动颠覆国家政权，推翻社会主义制度的；\n　　　3、煽动分裂国家、破坏国家统一的；\n　　　4、煽动民族仇恨、民族歧视，破坏民族团结的；\n　　　5、捏造或者歪曲事实，散布谣言，扰乱社会秩序的；\n　　　6、宣扬封建迷信、淫秽、色情、赌博、暴力、凶杀、恐怖、教唆犯罪的；\n　　　7、公然侮辱他人或者捏造事实诽谤他人的，或者进行其他恶意攻击的；\n　　　8、损害国家机关信誉的；\n　　　9、其他违反宪法和法律行政法规的；\n　　　10、进行商业广告行为的。\n　　用户不能传输任何教唆他人构成犯罪行为的资料；不能传输长国内不利条件和涉及国家安全的资料；不能传输任何不符合当地法规、国家法律和国际法 律的资料。未经许可而非法进入其它电脑系统是禁止的。若用户的行为不符合以上的条款，YUNCMS将取消用户服务帐号。\n11．网站内容的所有权\n　　YUNCMS定义的内容包括：文字、软件、声音、相片、录象、图表；在广告中全部内容；电子邮件的全部内容；YUNCMS为用户提供的商业信息。所有这些内容受版权、商标、标签和其它财产所有权法律的保护。所以，用户只能在YUNCMS和广告商授权下才能使用这些内容，而不能擅自复制、篡改这些内容、或创造与内容有关的派生产品。\n12．附加信息服务\n　　用户在享用YUNCMS提供的免费服务的同时，同意接受YUNCMS提供的各类附加信息服务。\n13．解释权\n　　本注册协议的解释权归YUNCMS所有。如果其中有任何条款与国家的有关法律相抵触，则以国家法律的明文规定为准。";s:21:"registerverifymessage";s:152:"欢迎您注册成为YUNCMS用户，您的账号需要邮箱认证，点击下面链接进行认证：{click}\n或者将网址复制到浏览器：{url}";s:14:"forgetpassword";s:122:"YUNCMS密码找回，请在一小时内点击下面链接进行操作：{click}\n或者将网址复制到浏览器：{url}";s:12:"denyusername";a:1:{i:0;s:5:"admin";}s:9:"denyemail";a:1:{i:0;s:8:"admin888";}}', 0, 0, '2011-05-05', '2011-05-05');
-INSERT INTO `#table#application` VALUES('search', '搜索', '', 1, '1.0', '', 'a:6:{s:13:"fulltextenble";s:1:"1";s:13:"relationenble";s:1:"1";s:13:"suggestenable";s:1:"1";s:12:"sphinxenable";s:1:"0";s:10:"sphinxhost";s:0:"";s:10:"sphinxport";s:0:"";}', 0, 0, '2012-05-18', '2012-05-18');
+INSERT INTO `#table#application` VALUES('member', '会员', '', 1, '1.0', '会员', 'array (\n  ''allowregister'' => ''1'',\n  ''choosemodel'' => ''1'',\n  ''validation'' => ''1'',\n  ''enablcodecheck'' => ''1'',\n  ''mobile_checktype'' => ''0'',\n  ''showapppoint'' => ''1'',\n  ''rmb_point_rate'' => ''10'',\n  ''defualtpoint'' => ''0'',\n  ''defualtamount'' => ''0'',\n  ''showregprotocol'' => ''1'',\n  ''regprotocol'' => ''       欢迎您注册成为YUNCMS用户\r\n请仔细阅读下面的协议，只有接受协议才能继续进行注册。 \r\n1．服务条款的确认和接纳\r\n　　YUNCMS用户服务的所有权和运作权归YUNCMS拥有。YUNCMS所提供的服务将按照有关章程、服务条款和操作规则严格执行。用户通过注册程序点击“我同意” 按钮，即表示用户与YUNCMS达成协议并接受所有的服务条款。\r\n2． YUNCMS服务简介\r\n　　YUNCMS通过国际互联网为用户提供新闻及文章浏览、图片浏览、软件下载、网上留言和BBS论坛等服务。\r\n　　用户必须： \r\n　　1)购置设备，包括个人电脑一台、调制解调器一个及配备上网装置。 \r\n　　2)个人上网和支付与此服务有关的电话费用、网络费用。\r\n　　用户同意： \r\n　　1)提供及时、详尽及准确的个人资料。 \r\n　　2)不断更新注册资料，符合及时、详尽、准确的要求。所有原始键入的资料将引用为注册资料。 \r\n　　3)用户同意遵守《中华人民共和国保守国家秘密法》、《中华人民共和国计算机信息系统安全保护条例》、《计算机软件保护条例》等有关计算机及互联网规定的法律和法规、实施办法。在任何情况下，YUNCMS合理地认为用户的行为可能违反上述法律、法规，YUNCMS可以在任何时候，不经事先通知终止向该用户提供服务。用户应了解国际互联网的无国界性，应特别注意遵守当地所有有关的法律和法规。\r\n3． 服务条款的修改\r\n　　YUNCMS会不定时地修改服务条款，服务条款一旦发生变动，将会在相关页面上提示修改内容。如果您同意改动，则再一次点击“我同意”按钮。 如果您不接受，则及时取消您的用户使用服务资格。\r\n4． 服务修订\r\n　　YUNCMS保留随时修改或中断服务而不需知照用户的权利。YUNCMS行使修改或中断服务的权利，不需对用户或第三方负责。\r\n5． 用户隐私制度\r\n　　尊重用户个人隐私是YUNCMS的 基本政策。YUNCMS不会公开、编辑或透露用户的注册信息，除非有法律许可要求，或YUNCMS在诚信的基础上认为透露这些信息在以下三种情况是必要的： \r\n　　1)遵守有关法律规定，遵从合法服务程序。 \r\n　　2)保持维护YUNCMS的商标所有权。 \r\n　　3)在紧急情况下竭力维护用户个人和社会大众的隐私安全。 \r\n　　4)符合其他相关的要求。 \r\n6．用户的帐号，密码和安全性\r\n　　一旦注册成功成为YUNCMS用户，您将得到一个密码和帐号。如果您不保管好自己的帐号和密码安全，将对因此产生的后果负全部责任。另外，每个用户都要对其帐户中的所有活动和事件负全责。您可随时根据指示改变您的密码，也可以结束旧的帐户重开一个新帐户。用户同意若发现任何非法使用用户帐号或安全漏洞的情况，立即通知YUNCMS。\r\n7． 免责条款\r\n　　用户明确同意网站服务的使用由用户个人承担风险。 　　 \r\n　　YUNCMS不作任何类型的担保，不担保服务一定能满足用户的要求，也不担保服务不会受中断，对服务的及时性，安全性，出错发生都不作担保。用户理解并接受：任何通过YUNCMS服务取得的信息资料的可靠性取决于用户自己，用户自己承担所有风险和责任。 \r\n8．有限责任\r\n　　YUNCMS对任何直接、间接、偶然、特殊及继起的损害不负责任。\r\n9． 不提供零售和商业性服务 \r\n　　用户使用网站服务的权利是个人的。用户只能是一个单独的个体而不能是一个公司或实体商业性组织。用户承诺不经YUNCMS同意，不能利用网站服务进行销售或其他商业用途。\r\n10．用户责任 \r\n　　用户单独承担传输内容的责任。用户必须遵循： \r\n　　1)从中国境内向外传输技术性资料时必须符合中国有关法规。 \r\n　　2)使用网站服务不作非法用途。 \r\n　　3)不干扰或混乱网络服务。 \r\n　　4)不在论坛BBS或留言簿发表任何与政治相关的信息。 \r\n　　5)遵守所有使用网站服务的网络协议、规定、程序和惯例。\r\n　　6)不得利用本站危害国家安全、泄露国家秘密，不得侵犯国家社会集体的和公民的合法权益。\r\n　　7)不得利用本站制作、复制和传播下列信息： \r\n　　　1、煽动抗拒、破坏宪法和法律、行政法规实施的；\r\n　　　2、煽动颠覆国家政权，推翻社会主义制度的；\r\n　　　3、煽动分裂国家、破坏国家统一的；\r\n　　　4、煽动民族仇恨、民族歧视，破坏民族团结的；\r\n　　　5、捏造或者歪曲事实，散布谣言，扰乱社会秩序的；\r\n　　　6、宣扬封建迷信、淫秽、色情、赌博、暴力、凶杀、恐怖、教唆犯罪的；\r\n　　　7、公然侮辱他人或者捏造事实诽谤他人的，或者进行其他恶意攻击的；\r\n　　　8、损害国家机关信誉的；\r\n　　　9、其他违反宪法和法律行政法规的；\r\n　　　10、进行商业广告行为的。\r\n　　用户不能传输任何教唆他人构成犯罪行为的资料；不能传输长国内不利条件和涉及国家安全的资料；不能传输任何不符合当地法规、国家法律和国际法 律的资料。未经许可而非法进入其它电脑系统是禁止的。若用户的行为不符合以上的条款，YUNCMS将取消用户服务帐号。\r\n11．网站内容的所有权\r\n　　YUNCMS定义的内容包括：文字、软件、声音、相片、录象、图表；在广告中全部内容；电子邮件的全部内容；YUNCMS为用户提供的商业信息。所有这些内容受版权、商标、标签和其它财产所有权法律的保护。所以，用户只能在YUNCMS和广告商授权下才能使用这些内容，而不能擅自复制、篡改这些内容、或创造与内容有关的派生产品。\r\n12．附加信息服务\r\n　　用户在享用YUNCMS提供的免费服务的同时，同意接受YUNCMS提供的各类附加信息服务。\r\n13．解释权\r\n　　本注册协议的解释权归YUNCMS所有。如果其中有任何条款与国家的有关法律相抵触，则以国家法律的明文规定为准。 '',\n  ''registerverifymessage'' => '' 欢迎您注册成为YUNCMS用户，您的账号需要邮箱认证，点击下面链接进行认证：{click}\r\n或者将网址复制到浏览器：{url}'',\n  ''forgetpassword'' => ''YUNCMS密码找回，请在一小时内点击下面链接进行操作：{click}\r\n或者将网址复制到浏览器：{url}'',\n  ''denyusername'' => \n  array (\n    0 => '''',\n  ),\n  ''denyemail'' => \n  array (\n    0 => '''',\n  ),\n)', 0, 0, '2011-05-05', '2011-05-05');
+INSERT INTO `#table#application` VALUES('search', '搜索', '', 1, '1.0', '', 'array (\n  ''fulltextenble'' => ''1'',\n  ''relationenble'' => ''1'',\n  ''suggestenable'' => ''1'',\n  ''sphinxenable'' => ''0'',\n  ''sphinxhost'' => '''',\n  ''sphinxport'' => '''',\n)', 0, 0, '2012-05-18', '2012-05-18');
 INSERT INTO `#table#application` VALUES('pay', '支付', '', 1, '1.0', '', '', 0, 0, '2010-05-18', '2012-05-18');
 INSERT INTO `#table#application` VALUES('template', '模板风格', '', 1, '1.0', '', '', 0, 0, '2010-05-18', '2012-05-18');
 INSERT INTO `#table#application` VALUES('attachment', '附件', '', 1, '1.0', '', '', 0, 0, '2010-05-18', '2012-05-18');
@@ -390,7 +406,7 @@ INSERT INTO `#table#application` VALUES('block', '碎片', 'block', 1, '1.0', ''
 INSERT INTO `#table#application` VALUES('scan', '木马查杀', 'scan', 1, '1.0', '', '', 0, 0, '2010-05-18', '2012-05-18');
 INSERT INTO `#table#application` VALUES('special', '专题', 'special', 1, '1.0', '', '', 0, 0, '2010-05-18', '2012-05-18');
 INSERT INTO `#table#application` VALUES('dbsource', '数据源', 'dbsource', 1, '1.0', '', '', 0, 0, '2010-05-18', '2012-05-18');
-
+INSERT INTO `#table#application` VALUES('collection', '数据采集', 'collection', 1, '1.0', '', '', 0, 0, '2010-05-18', '2012-05-18');
 -- ----------------------------
 -- Table structure for `#table#area`
 -- ----------------------------
@@ -554,6 +570,86 @@ CREATE TABLE `#table#category_priv` (
   `is_admin` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `action` char(30) NOT NULL,
   KEY `catid` (`catid`,`roleid`,`is_admin`,`action`)
+) ENGINE=MyISAM;
+
+-- ----------------------------
+-- Table structure for `#table#collection_content`
+-- ----------------------------
+DROP TABLE IF EXISTS `#table#collection_content`;
+CREATE TABLE `#table#collection_content` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nodeid` int(10) unsigned NOT NULL DEFAULT '0',
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `url` char(255) NOT NULL,
+  `title` char(100) NOT NULL,
+  `data` text NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `nodeid` (`nodeid`),
+  KEY `status` (`status`)
+) ENGINE=MyISAM;
+
+-- ----------------------------
+-- Table structure for `#table#collection_history`
+-- ----------------------------
+DROP TABLE IF EXISTS `#table#collection_history`;
+CREATE TABLE `#table#collection_history` (
+  `md5` char(32) NOT NULL,
+  PRIMARY KEY (`md5`)
+) ENGINE=MyISAM;
+
+-- ----------------------------
+-- Table structure for `#table#collection_node`
+-- ----------------------------
+DROP TABLE IF EXISTS `#table#collection_node`;
+CREATE TABLE `#table#collection_node` (
+  `nodeid` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `lastdate` int(10) unsigned NOT NULL DEFAULT '0',
+  `sourcecharset` varchar(8) NOT NULL,
+  `sourcetype` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `urlpage` text NOT NULL,
+  `pagesize_start` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `pagesize_end` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `page_base` char(255) NOT NULL,
+  `par_num` tinyint(3) unsigned NOT NULL DEFAULT '1',
+  `url_contain` char(100) NOT NULL,
+  `url_except` char(100) NOT NULL,
+  `url_start` char(100) NOT NULL DEFAULT '',
+  `url_end` char(100) NOT NULL DEFAULT '',
+  `title_rule` char(100) NOT NULL,
+  `title_html_rule` text NOT NULL,
+  `author_rule` char(100) NOT NULL,
+  `author_html_rule` text NOT NULL,
+  `comeform_rule` char(100) NOT NULL,
+  `comeform_html_rule` text NOT NULL,
+  `time_rule` char(100) NOT NULL,
+  `time_html_rule` text NOT NULL,
+  `content_rule` char(100) NOT NULL,
+  `content_html_rule` text NOT NULL,
+  `content_page_start` char(100) NOT NULL,
+  `content_page_end` char(100) NOT NULL,
+  `content_page_rule` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `content_page` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `content_nextpage` char(100) NOT NULL,
+  `down_attachment` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `watermark` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `coll_order` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `customize_config` text NOT NULL,
+  PRIMARY KEY (`nodeid`)
+) ENGINE=MyISAM;
+
+-- ----------------------------
+-- Table structure for `#table#collection_program`
+-- ----------------------------
+DROP TABLE IF EXISTS `#table#collection_program`;
+CREATE TABLE `#table#collection_program` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nodeid` int(10) unsigned NOT NULL DEFAULT '0',
+  `modelid` mediumint(6) unsigned NOT NULL DEFAULT '0',
+  `catid` int(10) unsigned NOT NULL DEFAULT '0',
+  `config` text NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `nodeid` (`nodeid`)
 ) ENGINE=MyISAM;
 -- ----------------------------
 -- Table structure for `#table#content_check`
@@ -1048,28 +1144,7 @@ INSERT INTO `#table#model_field` VALUES ('72', '3', 'pictureurls', '组图', '',
 INSERT INTO `#table#model_field` VALUES ('73', '1', 'islink', '转向链接', '', '', '0', '0', '', '', 'islink', '', '', '', '', '0', '1', '0', '0', '0', '1', '0', '0', '30', '0', '0');
 INSERT INTO `#table#model_field` VALUES ('74', '2', 'islink', '转向链接', '', '', '0', '0', '', '', 'islink', '', '', '', '', '0', '1', '0', '0', '0', '1', '0', '0', '30', '0', '0');
 INSERT INTO `#table#model_field` VALUES ('75', '3', 'islink', '转向链接', '', '', '0', '0', '', '', 'islink', '', '', '', '', '0', '1', '0', '0', '0', '1', '0', '0', '30', '0', '0');
-INSERT INTO `#table#model_field` VALUES ('76', '4', 'catid', '栏目', '', '', '1', '6', '/^[0-9]{1,6}$/', '请选择栏目', 'catid', 'array (\n  \'defaultvalue\' => \'\',\n)', '', '-99', '-99', '0', '1', '0', '4', '1', '1', '0', '0', '1', '0', '0');
-INSERT INTO `#table#model_field` VALUES ('77', '4', 'typeid', '类别', '', '', '0', '0', '', '', 'typeid', 'array (\n  \'minnumber\' => \'\',\n  \'defaultvalue\' => \'0\',\n)', '', '', '', '0', '1', '0', '1', '1', '1', '0', '0', '2', '0', '0');
-INSERT INTO `#table#model_field` VALUES ('78', '4', 'title', '标题', '', 'inputtitle', '1', '80', '', '请输入标题', 'title', '', '', '', '', '0', '1', '0', '4', '1', '4', '1', '1', '4', '0', '0');
-INSERT INTO `#table#model_field` VALUES ('79', '4', 'keywords', '关键词', '多关键词之间用空格或者“,”隔开', '', '0', '40', '', '', 'keyword', 'array (\r\n  \'size\' => \'100\',\r\n  \'defaultvalue\' => \'\',\r\n)', '', '-99', '-99', '0', '1', '0', '4', '1', '4', '1', '0', '7', '0', '0');
-INSERT INTO `#table#model_field` VALUES ('80', '4', 'description', '摘要', '', '', '0', '255', '', '', 'textarea', 'array (\r\n  \'width\' => \'98\',\r\n  \'height\' => \'46\',\r\n  \'defaultvalue\' => \'\',\r\n  \'enablehtml\' => \'0\',\r\n)', '', '', '', '0', '1', '0', '1', '0', '4', '1', '1', '10', '0', '0');
-INSERT INTO `#table#model_field` VALUES ('81', '4', 'updatetime', '更新时间', '', '', '0', '0', '', '', 'datetime', 'array (\r\n  \'dateformat\' => \'int\',\r\n  \'format\' => \'Y-m-d H:i:s\',\r\n  \'defaulttype\' => \'1\',\r\n  \'defaultvalue\' => \'\',\r\n)', '', '', '', '4', '1', '0', '1', '0', '0', '0', '0', '12', '0', '0');
-INSERT INTO `#table#model_field` VALUES ('82', '4', 'content', '内容', '<div class=\"content_attr\"><label><input name=\"add_introduce\" type=\"checkbox\"  value=\"1\" checked>是否截取内容</label><input type=\"text\" name=\"introcude_length\" value=\"200\" size=\"3\">字符至内容摘要\r\n<label><input type=\'checkbox\' name=\'auto_thumb\' value=\"1\" checked>是否获取内容第</label><input type=\"text\" name=\"auto_thumb_no\" value=\"1\" size=\"2\" class=\"\">张图片作为标题图片\r\n</div>', '', '1', '999999', '', '内容不能为空', 'editor', 'array (\n  \'toolbar\' => \'full\',\n  \'defaultvalue\' => \'\',\n  \'enablekeylink\' => \'1\',\n  \'replacenum\' => \'2\',\n  \'link_mode\' => \'0\',\n  \'enablesaveimage\' => \'1\',\n)', '', '', '', '0', '0', '0', '1', '0', '4', '1', '0', '13', '0', '0');
-INSERT INTO `#table#model_field` VALUES ('83', '4', 'thumb', '缩略图', '', '', '0', '100', '', '', 'image', 'array (\n  \'size\' => \'50\',\n  \'defaultvalue\' => \'\',\n  \'show_type\' => \'1\',\n  \'upload_maxsize\' => \'1024\',\n  \'upload_allowext\' => \'jpg|jpeg|gif|png|bmp\',\n  \'watermark\' => \'0\',\n  \'isselectimage\' => \'1\',\n  \'images_width\' => \'\',\n  \'images_height\' => \'\',\n)', '', '', '', '0', '1', '0', '0', '0', '1', '0', '1', '14', '0', '0');
-INSERT INTO `#table#model_field` VALUES ('84', '4', 'relation', '相关文章', '', '', '0', '0', '', '', 'omnipotent', 'array (\n  \'formtext\' => \'<input type=\\\'hidden\\\' name=\\\'info[relation]\\\' id=\\\'relation\\\' value=\\\'{FIELD_VALUE}\\\' style=\\\'50\\\' >\r\n<ul class=\"list-dot\" id=\"relation_text\"></ul>\r\n<div>\r\n<input type=\\\'button\\\' value=\"添加相关\" onclick=\"omnipotent(\\\'selectid\\\',\\\'?app=content&controller=content&action=public_relationlist&modelid={MODELID}\\\',\\\'添加相关文章\\\',1)\" class=\"button\" style=\"width:66px;\">\r\n<span class=\"edit_content\">\r\n<input type=\\\'button\\\' value=\"显示已有\" onclick=\"show_relation({MODELID},{ID})\" class=\"button\" style=\"width:66px;\">\r\n</span>\r\n</div>\',\n  \'fieldtype\' => \'varchar\',\n  \'minnumber\' => \'1\',\n)', '', '2,6,4,5,1,17,18,7', '', '0', '0', '0', '0', '0', '0', '1', '0', '15', '0', '0');
-INSERT INTO `#table#model_field` VALUES ('85', '4', 'pages', '分页方式', '', '', '0', '0', '', '', 'pages', '', '', '-99', '-99', '0', '0', '0', '1', '0', '0', '0', '0', '16', '0', '0');
-INSERT INTO `#table#model_field` VALUES ('86', '4', 'inputtime', '发布时间', '', '', '0', '0', '', '', 'datetime', 'array (\n  \'fieldtype\' => \'int\',\n  \'format\' => \'Y-m-d H:i:s\',\n  \'defaulttype\' => \'0\',\n)', '', '', '', '0', '1', '0', '0', '0', '0', '0', '1', '17', '0', '0');
-INSERT INTO `#table#model_field` VALUES ('87', '4', 'posids', '推荐位', '', '', '0', '0', '', '', 'posid', 'array (\n  \'cols\' => \'4\',\n  \'width\' => \'125\',\n)', '', '', '', '0', '1', '0', '1', '0', '0', '0', '0', '18', '0', '0');
-INSERT INTO `#table#model_field` VALUES ('88', '4', 'groupids_view', '阅读权限', '', '', '0', '100', '', '', 'groupid', 'array (\n  \'groupids\' => \'\',\n)', '', '', '', '0', '0', '0', '1', '0', '0', '0', '0', '19', '0', '0');
-INSERT INTO `#table#model_field` VALUES ('89', '4', 'url', 'URL', '', '', '0', '100', '', '', 'text', '', '', '', '', '4', '1', '0', '1', '0', '0', '0', '0', '50', '0', '0');
-INSERT INTO `#table#model_field` VALUES ('90', '4', 'listorder', '排序', '', '', '0', '6', '', '', 'number', '', '', '', '', '4', '1', '0', '1', '0', '0', '0', '0', '51', '0', '0');
-INSERT INTO `#table#model_field` VALUES ('91', '4', 'template', '内容页模板', '', '', '0', '30', '', '', 'template', 'array (\n  \'size\' => \'\',\n  \'defaultvalue\' => \'\',\n)', '', '-99', '-99', '0', '0', '0', '0', '0', '0', '0', '0', '53', '0', '0');
-INSERT INTO `#table#model_field` VALUES ('92', '4', 'allow_comment', '允许评论', '', '', '0', '0', '', '', 'box', 'array (\n  \'options\' => \'允许评论|1\r\n不允许评论|0\',\n  \'boxtype\' => \'radio\',\n  \'fieldtype\' => \'tinyint\',\n  \'minnumber\' => \'1\',\n  \'width\' => \'88\',\n  \'size\' => \'1\',\n  \'defaultvalue\' => \'1\',\n  \'outputtype\' => \'0\',\n)', '', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '54', '0', '0');
-INSERT INTO `#table#model_field` VALUES ('93', '4', 'status', '状态', '', '', '0', '2', '', '', 'box', '', '', '', '', '4', '1', '0', '1', '0', '0', '0', '0', '55', '0', '0');
-INSERT INTO `#table#model_field` VALUES ('94', '4', 'readpoint', '阅读收费', '', '', '0', '5', '', '', 'readpoint', 'array (\n  \'minnumber\' => \'1\',\n  \'maxnumber\' => \'99999\',\n  \'decimaldigits\' => \'0\',\n  \'defaultvalue\' => \'\',\n)', '', '-99', '-99', '0', '0', '0', '0', '0', '0', '0', '0', '55', '0', '0');
-INSERT INTO `#table#model_field` VALUES ('95', '4', 'username', '用户名', '', '', '0', '20', '', '', 'text', '', '', '', '', '4', '1', '0', '1', '0', '0', '0', '0', '98', '0', '0');
-INSERT INTO `#table#model_field` VALUES ('96', '4', 'islink', '转向链接', '', '', '0', '0', '', '', 'islink', '', '', '', '', '0', '1', '0', '1', '0', '1', '0', '0', '20', '0', '0');
-INSERT INTO `#table#model_field` VALUES ('97', '5', 'birthday', '生日', '', '', '0', '0', '', '生日格式错误', 'datetime', 'array (\n  \'fieldtype\' => \'date\',\n  \'format\' => \'Y-m-d\',\n  \'defaulttype\' => \'0\',\n)', '', '', '', '0', '0', '0', '0', '0', '1', '1', '0', '0', '0', '0');
+INSERT INTO `#table#model_field` VALUES ('97', '4', 'birthday', '生日', '', '', '0', '0', '', '生日格式错误', 'datetime', 'array (\n  \'fieldtype\' => \'date\',\n  \'format\' => \'Y-m-d\',\n  \'defaulttype\' => \'0\',\n)', '', '', '', '0', '0', '0', '0', '0', '1', '1', '0', '0', '0', '0');
 -- ----------------------------
 -- Table structure for `#table#news`
 -- ----------------------------
@@ -1353,7 +1428,7 @@ CREATE TABLE `#table#position_data` (
 DROP TABLE IF EXISTS `#table#search`;
 CREATE TABLE `#table#search` (
   `searchid` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `typeid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `typeid` smallint(5) unsigned DEFAULT '0',
   `id` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `adddate` int(10) unsigned NOT NULL,
   `data` text NOT NULL,

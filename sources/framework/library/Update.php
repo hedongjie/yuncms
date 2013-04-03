@@ -49,19 +49,9 @@ class Update {
 		if (! empty ( $uuid )) {
 			return $uuid;
 		} else {
-			$uuid = $this->uuid ( C ( 'version', 'product' ) . '-' );
+			$uuid = uuid ( C ( 'version', 'product' ) . '-' );
 			Core_Config::modify ( 'version', array ('uuid' => $uuid ) );
 			return $uuid;
 		}
-	}
-
-	private function uuid($prefix = '') {
-		$chars = md5 ( uniqid ( mt_rand (), true ) );
-		$uuid = substr ( $chars, 0, 8 ) . '-';
-		$uuid .= substr ( $chars, 8, 4 ) . '-';
-		$uuid .= substr ( $chars, 12, 4 ) . '-';
-		$uuid .= substr ( $chars, 16, 4 ) . '-';
-		$uuid .= substr ( $chars, 20, 12 );
-		return $prefix . $uuid;
 	}
 }

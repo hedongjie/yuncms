@@ -12,7 +12,7 @@ return array (
 				'hostname' => 'localhost',
 				'port'=>3306,
 				'driver' => 'mysql',
-				'database' => 'tttt2',
+				'database' => 'yuncms',
 				'username' => 'root', // 数据库帐户
 				'password' => '123456', // 数据库密码
 				'charset' => 'utf8', // 数据库编码

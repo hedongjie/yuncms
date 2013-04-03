@@ -126,7 +126,7 @@ class CategoryController extends admin {
 			$end_str = $old_end = '<script type="text/javascript">window.top.art.dialog({id:"test",content:\'<h2>' . L ( "add_success" ) . '</h2><span style="fotn-size:16px;">' . L ( "following_operation" ) . '</span><br /><ul style="fotn-size:14px;"><li><a href="?app=admin&controller=category&action=public_cache&menuid=128&application=admin" target="right"  onclick="window.top.art.dialog({id:\\\'test\\\'}).close()">' . L ( "following_operation_1" ) . '</a></li><li><a href="' . HTTP_REFERER . '" target="right" onclick="window.top.art.dialog({id:\\\'test\\\'}).close()">' . L ( "following_operation_2" ) . '</a></li></ul>\',width:"400px",height:"200px"});</script>';
 			if (! isset ( $_POST ['batch_add'] ) || empty ( $_POST ['batch_add'] )) {
 				$_POST ['info'] ['letter'] = strtolower ( string_to_pinyin ( $_POST ['info'] ['catname'] ) );
-				$catid = $this->db->insert ( $_POST ['info'] ,true);
+				$catid = $this->db->insert ( $_POST ['info'], true );
 				$this->update_priv ( $catid, $_POST ['priv_roleid'] );
 				$this->update_priv ( $catid, $_POST ['priv_groupid'], 0 );
 			} else { // 批量添加
@@ -312,7 +312,6 @@ class CategoryController extends admin {
 		}
 		return true;
 	}
-
 	public function cache() {
 		$categorys = array ();
 		$models = S ( 'common/model' );
@@ -374,8 +373,9 @@ class CategoryController extends admin {
 				$setting = string2array ( $cat ['setting'] );
 				$arrchildid = $this->get_arrchildid ( $catid );
 				$child = is_numeric ( $arrchildid ) ? 0 : 1;
-				if ($categorys [$catid] ['arrparentid'] != $arrparentid || $categorys [$catid] ['arrchildid'] != $arrchildid || $categorys [$catid] ['child'] != $child) $this->db->update ( array ('arrparentid' => $arrparentid,'arrchildid' => $arrchildid,'child' => $child ), array (
-																																																																							'catid' => $catid ) );
+				if ($categorys [$catid] ['arrparentid'] != $arrparentid || $categorys [$catid] ['arrchildid'] != $arrchildid || $categorys [$catid] ['child'] != $child) {
+					$this->db->where(array ('catid' => $catid ) )->update ( array ('arrparentid' => $arrparentid,'arrchildid' => $arrchildid,'child' => $child ));
+				}
 				$parentdir = $this->get_parentdir ( $catid );
 				$letter = strtolower ( string_to_pinyin ( $cat ['catname'] ) );
 				$listorder = $cat ['listorder'] ? $cat ['listorder'] : $catid;
@@ -395,10 +395,12 @@ class CategoryController extends admin {
 					$url = $this->update_url ( $catid );
 					$url = SITE_URL . $url;
 				}
-				if ($cat ['url'] != $url) $this->db->where ( array ('catid' => $catid ) )->update ( array ('url' => $url ) );
-				if ($categorys [$catid] ['parentdir'] != $parentdir || $categorys [$catid] ['sethtml'] != $sethtml || $categorys [$catid] ['letter'] != $letter || $categorys [$catid] ['listorder'] != $listorder) $this->db->update ( array ('parentdir' => $parentdir,'sethtml' => $sethtml,
-																																																												'letter' => $letter,'listorder' => $listorder ), array (
-																																																																									'catid' => $catid ) );
+				if ($cat ['url'] != $url) {
+					$this->db->where ( array ('catid' => $catid ) )->update ( array ('url' => $url ) );
+				}
+				if ($categorys [$catid] ['parentdir'] != $parentdir || $categorys [$catid] ['sethtml'] != $sethtml || $categorys [$catid] ['letter'] != $letter || $categorys [$catid] ['listorder'] != $listorder) {
+					$this->db->where(array ('catid' => $catid ))->update ( array ('parentdir' => $parentdir,'sethtml' => $sethtml,'letter' => $letter,'listorder' => $listorder ) );
+				}
 			}
 		}
 
@@ -463,11 +465,17 @@ class CategoryController extends admin {
 	 *
 	 *
 	 *
+	 *
+	 *
+	 *
 	 * 获取父栏目ID列表
 	 *
-	 * @param integer $catid 栏目ID
-	 * @param array $arrparentid 父目录ID
-	 * @param integer $n 查找的层次
+	 * @param integer $catid
+	 *        	栏目ID
+	 * @param array $arrparentid
+	 *        	父目录ID
+	 * @param integer $n
+	 *        	查找的层次
 	 */
 	private function get_arrparentid($catid, $arrparentid = '', $n = 1) {
 		if ($n > 5 || ! is_array ( $this->categorys ) || ! isset ( $this->categorys [$catid] )) return false;
@@ -502,7 +510,8 @@ class CategoryController extends admin {
 	/**
 	 * 获取父栏目路径
 	 *
-	 * @param $catid
+	 * @param
+	 *        	$catid
 	 */
 	function get_parentdir($catid) {
 		if ($this->categorys [$catid] ['parentid'] == 0) return '';
@@ -577,9 +586,12 @@ class CategoryController extends admin {
 	/**
 	 * 更新权限
 	 *
-	 * @param $catid
-	 * @param $priv_datas
-	 * @param $is_admin
+	 * @param
+	 *        	$catid
+	 * @param
+	 *        	$priv_datas
+	 * @param
+	 *        	$is_admin
 	 */
 	private function update_priv($catid, $priv_datas, $is_admin = 1) {
 		$this->priv_db = Loader::model ( 'category_priv_model' );
@@ -642,9 +654,9 @@ class CategoryController extends admin {
 			$html = array ('page_template' => Form::select_template ( $style, 'content', (isset ( $cat ['setting'] ['page_template'] ) && ! empty ( $cat ['setting'] ['page_template'] ) ? $cat ['setting'] ['page_template'] : 'category'), 'name="setting' . $batch_str . '[page_template]"', 'page' ) );
 		} else {
 			$html = array (
-						'category_template' => Form::select_template ( $style, 'content', (isset ( $cat ['setting'] ['category_template'] ) && ! empty ( $cat ['setting'] ['category_template'] ) ? $cat ['setting'] ['category_template'] : 'category'), 'name="setting' . $batch_str . '[category_template]"', 'category' ),
-						'list_template' => Form::select_template ( $style, 'content', (isset ( $cat ['setting'] ['list_template'] ) && ! empty ( $cat ['setting'] ['list_template'] ) ? $cat ['setting'] ['list_template'] : 'list'), 'name="setting' . $batch_str . '[list_template]"', 'list' ),
-						'show_template' => Form::select_template ( $style, 'content', (isset ( $cat ['setting'] ['show_template'] ) && ! empty ( $cat ['setting'] ['show_template'] ) ? $cat ['setting'] ['show_template'] : 'show'), 'name="setting' . $batch_str . '[show_template]"', 'show' ) );
+					'category_template' => Form::select_template ( $style, 'content', (isset ( $cat ['setting'] ['category_template'] ) && ! empty ( $cat ['setting'] ['category_template'] ) ? $cat ['setting'] ['category_template'] : 'category'), 'name="setting' . $batch_str . '[category_template]"', 'category' ),
+					'list_template' => Form::select_template ( $style, 'content', (isset ( $cat ['setting'] ['list_template'] ) && ! empty ( $cat ['setting'] ['list_template'] ) ? $cat ['setting'] ['list_template'] : 'list'), 'name="setting' . $batch_str . '[list_template]"', 'list' ),
+					'show_template' => Form::select_template ( $style, 'content', (isset ( $cat ['setting'] ['show_template'] ) && ! empty ( $cat ['setting'] ['show_template'] ) ? $cat ['setting'] ['show_template'] : 'show'), 'name="setting' . $batch_str . '[show_template]"', 'show' ) );
 		}
 		if (isset ( $_GET ['application'] )) {
 			unset ( $html );
@@ -659,7 +671,6 @@ class CategoryController extends admin {
 					}
 				}
 			}
-
 		}
 		if (CHARSET == 'gbk') $html = array_iconv ( $html, 'gbk', 'utf-8' );
 		echo json_encode ( $html );
@@ -670,16 +681,16 @@ class CategoryController extends admin {
 	 */
 	public function public_ajax_search() {
 		if ($_GET ['catname']) {
-			$where = array('child'=>'0');
+			$where = array ('child' => '0' );
 			if (preg_match ( '/([a-z]+)/i', $_GET ['catname'] )) {
 				$catname = strtolower ( trim ( $_GET ['catname'] ) );
-				$where['letter'] = array ('like',"%$catname%" );
+				$where ['letter'] = array ('like',"%$catname%" );
 			} else {
 				$catname = trim ( $_GET ['catname'] );
 				if (CHARSET == 'gbk') $catname = iconv ( 'utf-8', 'gbk', $catname );
-				$where['catname'] = array ('like',"%$catname%" );
+				$where ['catname'] = array ('like',"%$catname%" );
 			}
-			$result = $this->db->where($where)->field('catid,type,catname,letter')->select ();
+			$result = $this->db->where ( $where )->field ( 'catid,type,catname,letter' )->select ();
 			if (CHARSET == 'gbk') {
 				$result = array_iconv ( $result, 'gbk', 'utf-8' );
 			}
@@ -699,7 +710,7 @@ class CategoryController extends admin {
 			$list_template = $models [$modelid] ['list_template'];
 			$show_template = $models [$modelid] ['show_template'];
 			$html = array ('template_list' => $style,'category_template' => Form::select_template ( $style, 'content', $category_template, 'name="setting[category_template]"', 'category' ),
-						'list_template' => Form::select_template ( $style, 'content', $list_template, 'name="setting[list_template]"', 'list' ),'show_template' => Form::select_template ( $style, 'content', $show_template, 'name="setting[show_template]"', 'show' ) );
+					'list_template' => Form::select_template ( $style, 'content', $list_template, 'name="setting[list_template]"', 'list' ),'show_template' => Form::select_template ( $style, 'content', $show_template, 'name="setting[show_template]"', 'show' ) );
 			if (CHARSET == 'gbk') $html = array_iconv ( $html, 'gbk', 'utf-8' );
 			echo json_encode ( $html );
 		}

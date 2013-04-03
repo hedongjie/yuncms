@@ -1,5 +1,5 @@
 <div class="content vote">
-<form name="myform" id="myform"  action="{U('vote/index/post',array('subjectid'=>$subjectid))}}" method="post" target="_blank">
+<form name="myform" id="myform"  action="{SITE_URL}index.php?app=vote&action=post&subjectid={$subjectid}" method="post" target="_blank">
 <h4>{$subject}</h4>
 <div class="hr bk6"><hr></div>
 <input type="hidden" name="subjectid" value="{$subjectid}">
@@ -12,6 +12,6 @@
 {/if}
 <label><input type={if $ischeckbox=='0'}"radio"{else}"checkbox"{/if} name="radio[]" id="radio" value="{$r['optionid']}" {$check_status}/>{$r['option']}</label>
 {/loop}
-<div class="btn" style="{$display}"><input type="submit" value="提交"></div><a href="{U('vote/index/result',array('subjectid'=>$subjectid))}">[查看结果]</a>
+<div class="btn" style="{$display}"><input type="submit" value="提交"></div><a href="{SITE_URL}index.php?app=vote&action=result&subjectid={$subjectid}">[查看结果]</a>
 </form>
 </div>

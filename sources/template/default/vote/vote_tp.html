@@ -2,8 +2,8 @@
 <link href="{$CSS_PATH}vote.css" rel="stylesheet" type="text/css" />
 <!--main-->
 <div class="main tps">
-<div class="crumbs"><a href="{SITE_URL}">首页</a><span> &gt; </span> <a href="{U('vote/index/lists')}">投票</a>  </div>
-<form name="myform" id="myform"  action="{U('vote/index/post',array('subjectid'=>$subjectid))}" method="post">
+<div class="crumbs"><a href="{STIE_URL}">首页</a><span> &gt; </span> <a href="{SITE_URL}index.php?app=vote$action=lists">投票</a>  </div>
+<form name="myform" id="myform"  action="{SITE_URL}index.php?app=vote&action=post&subjectid={$subjectid}" method="post">
 <div class="vote_result">
     	<div class="tit"><span class="r">总票数：<strong>{$vote_data['total']}</strong></span><h5>标题: {$subject}</h5></div>
         <div class="c_box wrap">
@@ -22,17 +22,17 @@
         
         </div>
     </div>
-    <div class="shuru_btn"><button class="tp_btn" type="submit" style="{$display}"></button><a href="{U('vote/index/result',array('subjectid'=>$subjectid))}">[查看投票结果] </a></div>
+    <div class="shuru_btn"><button class="tp_btn" type="submit" style="{$display}"></button><a href="{SITE_URL}index.php?app=vote&action=result&subjectid={$subjectid}">[查看投票结果] </a></div>
     </form>
     <div class="vote_listt">
-    	<div class="tit"><span class="r"><a href="{U('vote/index/lists')}">查看更多>></a></span><h5>其他投票</h5></div>
+    	<div class="tit"><span class="r"><a href="{SITE_URL}index.php?app=vote&action=lists">查看更多>></a></span><h5>其他投票</h5></div>
         <ul class="wrap licol2 icon3j">
-             {pc:vote action="other_vote" num="8" order="subjectid DESC"}
+             {yun:vote do="other_vote" num="8" order="subjectid DESC"}
 			 	{loop $data $r}
 				
-				 <li><a title="{$r['subject']}" href="{U('vote/index/show',array('show_type'=>1,'subjectid'=>$r['subjectid']))}">{$r['subject']}</a><span ><font color="#1E50A0">(得票数: {$r['votenumber']})</font></span></li>
+				 <li><a title="{$r['subject']}" href="{SITE_URL}index.php?app=vote$action=show&show_type=1&subjectid={$r['subjectid']}">{$r['subject']}</a><span ><font color="#1E50A0">(得票数: {$r['votenumber']})</font></span></li>
 				{/loop}
-			 {/pc}
+			 {/yun}
        
         </ul>
     </div>

@@ -104,7 +104,7 @@ class Member_groupController extends admin {
     function delete() {
         $groupidarr = isset ( $_POST ['groupid'] ) ? $_POST ['groupid'] : showmessage ( L ( 'illegal_parameters' ), HTTP_REFERER );
         $where = to_sqls ( $groupidarr, '', 'groupid' );
-        if ($this->db->delete ( $where )) {
+        if ($this->db->where()->delete ( $where )) {
             $this->_updatecache ();
             showmessage ( L ( 'operation_success' ), HTTP_REFERER );
         } else {

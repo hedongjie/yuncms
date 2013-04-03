@@ -1,183 +1,122 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
-<meta name="keywords" content="{$SEO['keyword']}">
-<meta name="description" content="{$SEO['description']}">
-<link href="{SKIN_PATH}default/css/style.css" type="text/css" rel="stylesheet" rev="stylesheet" media="screen"  />
-<link href="{SKIN_PATH}default/css/index.css" type="text/css" rel="stylesheet" rev="stylesheet" media="screen"  />
-<link href="{SKIN_PATH}default/css/content.css" type="text/css" rel="stylesheet" rev="stylesheet" media="screen"  />
-<!--[if IE 6]> 
-<link href="{SKIN_PATH}default/css/ie6.css" type="text/css" rel="stylesheet" rev="stylesheet" media="screen"  />
-<![endif]-->
-<script type="text/javascript" src="{JS_PATH}jquery.min.js"></script>
-<script type="text/javascript" src="{JS_PATH}jquery.sgallery.js"></script>
-<link href="{SKIN_PATH}css/others.css" type="text/css" rel="stylesheet" rev="stylesheet" media="screen"  />
-</head>
-<body class="index-theme">
-{template "system","header_channel"}
-<div class="hr-h10"></div>
-<div class="menu-cir nosubmenu">
-  <div class="menu-cir-main">
-    <div class="mode-menu">
-      <ul id="common-menu">
-        <li><a href="{SITE_URL}">首页</a></li>
-        {yun:content do="category" catid="0" num="25" order="listorder ASC"}
-        {loop $data $r}
-        {if $r['catid'] == $catid}
-        <li id="nav-cur"><a href="{$r[url]}" target="_self">{$r[catname]}</a></li>
-        {else}
-        <li><a href="{$r[url]}">{$r[catname]}</a></li>
-        {/if}
-        {/loop}
-        {/yun}
-      </ul>
-    </div>
-  </div>
-  <div class="menu-cir-l"></div>
-  <div class="menu-cir-r"></div>
-</div>
-</div>
-<div class="hr-h10"></div>
-<div class="column">
-  <div class="col-l-main w-750">
-    <div class="col-r w-410">
-      <div class="hr-h6"></div>
-      <div class="mode-bigNews hot-news"> 
-        <!--{yun:content  do="position" posid="6" catid="$catid" order="listorder DESC" num="3"} start--> 
-        {loop $data $v}
-        {if $n==1}
-        <h3><a href="{$v[url]}">{$v[title]}</a></h3>
-        {else} <span>[<a href="{$v[url]}">{str_cut($v[title], 40, '')}</a>]</span> {/if}                       	
-        {/loop} </div>
-      <!--{/yun}	 end-->
-      <div class="hr-h6"></div>
-      <!--{yun:content  do="lists" catid="$catid" order="id DESC" num="7"}start-->
-      <ul class="mode-txtlink fs-14 cor-06c">
-        {loop $data $k $v}
-        <li><a href="{$v[url]}" title="{$v[title]}" target="_blank"{title_style($v[style])}>{str_cut($v[title], 80)}</a></li>
-        {/loop}
-      </ul>
-      <!--{/yun} end--> 
-    </div>
-    <div class="col-l w-320">
-      <div class="FocusPic">
-        <div class="content" id="main-slide"> 
-          <!--{yun:content  do="lists" catid="$catid" order="listorder ASC" thumb="1" num="5"}幻灯 start-->
-          <div class="changeDiv">{loop $data $n $r} <a href="{$r['url']}" title="{$r['title']}"><img src="{$r['thumb']}" alt="{$r['title']}" width="320" height="240" /></a> {/loop}</div>
-          <!--{/yun}幻灯 end--> 
+{template "content","header"}
+<!--main-->
+<div class="main">
+	<div class="col-left channel-hot">
+    	<div class="news-hot">
+        <div class="icon"></div>
+        	<div class="content">
+        	{yun:content  do="position" posid="10" catid="$catid" thumb="1" order="listorder DESC" num="2"}
+				{loop $data $v}
+				  <h4 class="blue"><a href="{$v[url]}" target="_blank"{title_style($v[style])}>{$v[title]}</a></h4>
+                <p><img src="{thumb($v[thumb],90,60)}" width="90" height="60" />{str_cut(strip_tags($v[description]), 160)}</p>
+                <div class="bk20 hr"><hr /></div>
+				{/loop}
+			{/yun}
+			{yun:content  do="lists" catid="$catid" order="id DESC" num="3"}
+                <ul class="list">
+                {loop $data $k $v}
+                	<li>·<a href="{$v[url]}" title="{$v[title]}" target="_blank"{title_style($v[style])}>{str_cut($v[title], 120)}</a></li>
+                {/loop}
+                </ul>
+             {/yun}
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <div class="col-r-extra w-200 ie6">
-    <div class="bor-9fc">
-      <div class="mode-head">
-        <h2 class="cor-06c">专题</h2>
-        <a href="http://special.cmstop.net" class="more">更多</a> </div>
-      <div class="m-picTxt padd-8"> <a href="http://www.cmstop.net/special/20111119"><img height="100" width="180" alt="东方财富网" src="http://upload.cmstop.net/2011/1119/thumb_180_180_1321633744312.jpg"/></a>
-        <h3><a class="bold line-h22" href="http://www.cmstop.net/special/20111119">东方财富网</a></h3>
-        <ul class="mode-txtlink line-h22">
-          <li><a href="http://tech.cmstop.net/2011/1120/225.shtml">科技组图</a></li>
+    
+    
+    <div class="col-auto channel-slide">
+    {yun:content  do="lists" catid="$catid" order="listorder ASC" thumb="1" num="5"}
+  		<ul class="thumb">
+  		{loop $data $k $v}
+        	<li {if $n==1}class="on" style="margin:0"{/if}><a href="{$v[url]}"><img src="{thumb($v[thumb], 82, 50)}"  alt="{$v[title]}" width="82" height="50" /><div class="icon"></div></a></li>
+        {/loop}
         </ul>
-      </div>
-    </div>
-    <div class="hr-h10"></div>
-  </div>
-</div>
-<div class="hr-h10"></div>
-<div class="column"> 
-  <script language="javascript" src="{SITE_URL}index.php?app=poster&controller=index&action=show_poster&id=5"></script> 
-  <!--新闻页通栏banner--> 
-</div>
-<div class="hr-h6"></div>
-<!-- *******************  start box   *********************** -->
-<div class="column">
-  <div class="col-l-main w-720"> 
-    <!-- *******************  start 栏目列表   *********************** -->
-    <div class="mode-col-2">
-      <ul>
-        {php $j=1;}
-        {loop subcat($catid) $v}
-        {php if($v['type']!=0) continue;}
-        <li class="w-318 bor-9fc largepart">
-          <div class="mode-head">
-            <h2 class="cor-c00">{$v[catname]}</h2>
-            <div class="mode-rss"><a href="{U('content/rss',array('catid'=>$v['catid']))}"><img src="{IMG_PATH}icon/rss.gif" alt=""  width="40" height="17"/></a></div>
-            <a href="{$v[url]}"" class="more-e">更多</a> </div>
-          <div class="mode-txtlink fs-14 cor-06c">
-            <ul class="mar-b-8">
-              {yun:content do="lists" catid="$v[catid]" num="5" order="id DESC"}
-              {loop $data $v}
-              <li><a href="{$v[url]}" target="_blank" {title_style($v[style])}>{str_cut($v[title], 60, '')}</a></li>
-              {/loop}
-              {/yun}
+        <div class="col-auto">
+            <ul class="photo">
+            {loop $data $k $v}
+                <li><a href="{$v[url]}" title="{$v[title]}"><img src="{thumb($v[thumb], 398, 234)}" width="398" height="234" alt="{$v[title]}" /></a></li>
+            {/loop}
             </ul>
+            <div class="title">
+            {loop $data $k $v}
+              <p  {if $n==1}style="display:block"{/if}><strong><a href="{$v[url]}" title="{$v[title]}" class="blue"{title_style($v[style])}>{str_cut($v[title], 36)}</a></strong><br />{str_cut(strip_tags($v[description]), 62)}</p>
+            {/loop}
           </div>
-        </li>
-        {$j++}
-        {/loop}
-      </ul>
+        </div>
+         {/yun}
     </div>
-    <!-- *******************  end 栏目列表   *********************** --> 
+   
+    <div class="ads">
+    	<div class="col-left"><script language="javascript" src="{APP_PATH}caches/poster_js/4.js"></script></div>
+        <div class="col-auto">
+        	<div class="left">推广链接</div>
+            <div class="right">这里放广告</div>
+        </div>
   </div>
-  <!-- *******************  start 右侧   *********************** -->
-  <div class="col-r-extra w-230">
-    <div class="bor-9fc">
-      <div class="mode-head">
-        <h2 class="cor-c00">推荐阅读</h2>
-      </div>
-      <div class="mode-txtlink line-h22 cor-4545">{yun:content  do="lists" catid="$catid" order="id DESC" num="10"}
-        <ul>
-          {loop $data $k $v}
-          <li><a href="{$v[url]}" title="{$v[title]}"  target="_blank" {title_style($v[style])}>{str_cut($v[title], 50)}</a></li>
-          {/loop}
-        </ul>
-        {/yun} </div>
-    </div>
-    <div class="hr-h6"></div>
-    <div class="bor-9fc">
-      <div class="mode-tabs padd-r-0">
-        <h2 class="cor-c00">排行榜</h2>
-        <ul id="tab-title-1" class="fs-12 f-r">
-          <li><a href="{WWW_URL}rank.php" class="tabs-focus">点击</a></li>
-          <li><a href="{WWW_URL}rank.php">评论</a></li>
-          <li><a href="{WWW_URL}digg.php">Digg</a></li>
-        </ul>
-      </div>
-      <div id="tab-cont-1" class="padd-tb-8">
-        <div class="mode-rank">
-          <ol>
-            <!--{content catid="$catid" published="7" orderby="pv desc" size="10"}-->
-            <li><em<!--{if $i<=3}--> class="front"<!--{/if}-->>{$i}</em><a href="{$r[url]}" target="_blank" style="color:{$r[color]}">{str_cut($r[title], 28)}</a></li>
-            <!--{/content}-->
-          </ol>
+  <div class="bk10"></div>
+	<div class="col-left">
+	{php $j=1;}
+	{loop subcat($catid) $v}
+	{php if($v['type']!=0) continue;}
+        <div class="box cat-area" {if $j%2==1}style="margin-right:10px"{/if}>
+        		<h5 class="title-1">{$v[catname]}<a href="{$v[url]}" class="more">更多>></a></h5>
+             <div class="content">
+             	
+				{yun:content do="lists" catid="$v[catid]" thumb="1" num="1" order="id DESC"}
+				<p>
+					{loop $data $v}
+						<a href="{$v[url]}" target="_blank"><img src="{thumb($v[thumb],70,60)}" width="70" height="60"/></a>
+						<strong><a href="{$v[url]}" target="_blank" title="{$v[title]}"{title_style($v[style])}>{str_cut($v[title], 30)}</a></strong><br />{str_cut($v[description],116,'..')}
+					{/loop}
+					</p>
+				{/yun}
+                
+                <div class="bk15 hr"></div>
+                <ul class="list  lh24 f14">
+                {yun:content do="lists" catid="$v[catid]" num="5" order="id DESC"}
+					{loop $data $v}
+						<li><a href="{$v[url]}" target="_blank"{title_style($v[style])}>{$v[title]}</a></li>
+					{/loop}
+				{/yun}
+                </ul>
+            </div>
         </div>
-        <div style="display: none;" class="mode-rank">
-          <ol>
-            <!--{content catid="$catid" published="7" orderby="comments desc" size="10"}-->
-            <li><em<!--{if $i<=3}--> class="front"<!--{/if}-->>{$i}</em><a href="{$r[url]}" target="_blank" style="color:{$r[color]}">{str_cut($r[title], 28)}</a></li>
-            <!--{/content}-->
-          </ol>
-        </div>
-        <div style="display: none;" class="mode-rank">
-          <ol>
-            <!--{db sql="SELECT * FROM `#table_content` AS c, `#table_digg` AS d WHERE c.contentid=d.contentid AND c.published>=UNIX_TIMESTAMP()-7*24*3600 AND c.status=6 ORDER BY d.supports DESC" size="10"}-->
-            <li><em<!--{if $i<=3}--> class="front"<!--{/if}-->>{$i}</em><a href="{$r[url]}" target="_blank" style="color:{$r[color]}">{str_cut($r[title], 28)}</a></li>
-            <!--{/db}-->
-          </ol>
-        </div>
-      </div>
-    </div>
+        {if $j%2==0}<div class="bk10"></div>{/if}
+	{$j++}
+	{/loop}
   </div>
-  <!-- *******************  end 右侧   *********************** --> 
+    <div class="col-auto">
+        <div class="box">
+            <h5 class="title-2">频道总排行</h5>
+            <ul class="content digg">
+            {yun:content do="hits" catid="$catid" num="10" order="views DESC" cache="3600"}
+				{loop $data $v}
+					<li><a href="{$v[url]}" target="_blank"{title_style($v[style])}>{$v[title]}</a></li>
+				{/loop}
+			{/yun}
+            </ul>
+        </div>
+        <div class="bk10"></div>
+        <div class="box">
+            <h5 class="title-2">频道本月排行</h5>
+            <ul class="content rank">
+            {yun:content do="hits" catid="$catid" num="8" order="monthviews DESC" cache="3600"}
+				{loop $data $v}
+				<li><span>{number_format($v[monthviews])}</span><a href="{$v[url]}"{title_style($v[style])} class="title" title="{$v[title]}">{str_cut($v[title],56,'...')}</a></li>
+				{/loop}
+			{/yun}
+            </ul>
+        </div>
+    </div>
 </div>
-<!-- *******************  end box   *********************** --> 
-<script type="text/javascript"> 
-$(function(){
-	new slide("#main-slide","cur",320,240,1);//焦点图
-	new SwapTab("#tab-title-4","a","#tab-cont-4","div","tabs-focus");//排行TAB
-})
-</script> 
-{template "system","footer"}
+<script type="text/javascript">
+function ChannelSlide(Name,Class){
+	$(Name+' ul.photo li').sGallery({
+		titleObj:Name+' div.title p',
+		thumbObj:Name+' .thumb li',
+		thumbNowClass:Class
+	});
+}
+new ChannelSlide(".channel-slide","on",311,260);
+</script>
+{template "content","footer"}

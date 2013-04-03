@@ -9,9 +9,12 @@
  * 提示信息页面跳转，跳转地址如果传入数组，页面会提示多个地址供用户选择，默认跳转地址为数组的第一个值，时间为5秒。
  * showmessage('登录成功', array('默认跳转地址'=>'http://www.yuncms.net'));
  *
- * @param string $msg 提示信息
- * @param mixed(string/array) $url_forward 跳转地址
- * @param int $ms 跳转等待时间
+ * @param string $msg
+ *        	提示信息
+ * @param mixed(string/array) $url_forward
+ *        	跳转地址
+ * @param int $ms
+ *        	跳转等待时间
  */
 function showmessage($msg, $url_forward = 'goback', $ms = 1250, $dialog = '', $returnjs = '') {
 	if ($ms == 301) {
@@ -33,7 +36,8 @@ function showmessage($msg, $url_forward = 'goback', $ms = 1250, $dialog = '', $r
 /**
  * 对用户的密码进行加密
  *
- * @param $password
+ * @param
+ *        	$password
  * @param $encrypt //传入加密串，在修改密码时做认证
  * @return array/password
  */
@@ -128,6 +132,25 @@ function upload_url($storage) {
 		return C ( 'attachment', 'upload_url' );
 	}
 }
+function get_keywords($data, $number = 3) {
+	$data = trim ( strip_tags ( $data ) );
+	if (empty ( $data )) return '';
+	if (strtolower ( CHARSET ) != 'utf-8') {
+		$data = iconv ( 'utf-8', CHARSET, $data );
+	} else {
+		$data = iconv ( 'utf-8', 'gbk', $data );
+	}
+	$result = Loader::lib ( 'HttpClient' )->post ( 'http://tool.phpcms.cn/api/get_keywords.php', array ('siteurl' => SITE_URL,'charset' => CHARSET,'data' => $data,'number' => $number ) );
+	if ($result) {
+		if (strtolower ( CHARSET ) != 'utf-8') {
+			return $result;
+		} else {
+			return iconv ( 'gbk', 'utf-8', $result );
+		}
+	}
+	return '';
+}
+
 /**
  * 生成CNZZ统计代码
  */
@@ -361,7 +384,7 @@ function go($catid, $id, $allurl = 0) {
 	if (! $modelid) return '';
 	$db = Loader::model ( 'content_model' );
 	$db->set_model ( $modelid );
-	$r = $db->where ( array ('id' => $id ) )->field('url')->find();
+	$r = $db->where ( array ('id' => $id ) )->field ( 'url' )->find ();
 	if (! empty ( $allurl )) {
 		if (strpos ( $r ['url'], '://' ) === false) {
 			if (strpos ( $category [$catid] ['url'], '://' ) === FALSE) {
@@ -381,5 +404,74 @@ function go($catid, $id, $allurl = 0) {
 function Sonline() {
 	$config = S ( 'common/common' );
 	if (! $config ['live_ifonserver']) return '';
-	return '<script type="text/javascript" src="' . JS_PATH . 'jquery.Sonline.js"></script><script type="text/javascript">$(function(){$().Sonline({Position:"'.$config['live_serverlistp'].'",	Top:100,Width:165,Style:6,Effect:true,DefaultsOpen:'.$config['live_boxopen'].',Tel:"4000-094-858",Qqlist:"'.$config['qq'].'"});})</script>';
+	return '<script type="text/javascript" src="' . JS_PATH . 'jquery.Sonline.js"></script><script type="text/javascript">$(function(){$().Sonline({Position:"' . $config ['live_serverlistp'] . '",	Top:100,Width:165,Style:6,Effect:true,DefaultsOpen:' . $config ['live_boxopen'] . ',Tel:"4000-094-858",Qqlist:"' . $config ['qq'] . '"});})</script>';
+}
+
+/**
+ * 判断是否启用UCenter
+ */
+function ucenter_exists() {
+	$uc_config = C ( 'system', 'ucenter' );
+	if ($uc_config == 1) return true;
+	return false;
+}
+
+/**
+ * 根据catid获取子栏目数据的sql语句
+ *
+ * @param intval $catid 栏目ID
+ */
+function get_sql_catid($file = 'category_content', $catid = 0) {
+	$category = S ( 'common/' . $file );
+	$catid = intval ( $catid );
+	if (! isset ( $category [$catid] )) return false;
+	return $category [$catid] ['child'] ? array('in',$category [$catid] ['arrchildid']) : $catid;
+}
+
+/**
+ * 获取用户头像
+ *
+ * @param $uid 默认为userid
+ * @param $size 头像大小有四种[30x30
+ *        	45x45 90x90 180x180] 默认30
+ */
+function get_memberavatar($userid, $size = '30') {
+	$memberinfo = Loader::model ( 'member_model' )->getby_userid ( $userid );
+	if (! $memberinfo) return false;
+	if (ucenter_exists () && isset ( $memberinfo ['ucenterid'] )) {
+		$avatar = Loader::lib ( 'Ucenter' )->uc_get_avatar ( $memberinfo ['ucenterid'] );
+	} else {
+		if (! $memberinfo ['avatar']) return false;
+		$dir1 = ceil ( $userid / 10000 );
+		$dir2 = ceil ( $userid % 10000 / 1000 );
+		$url = C ( 'attachment', 'avatar_url' ) . $dir1 . '/' . $dir2 . '/' . $userid . '/';
+		$avatar = array ('180' => $url . '180x180.jpg','90' => $url . '90x90.jpg','45' => $url . '45x45.jpg','30' => $url . '30x30.jpg' );
+	}
+	if (isset ( $avatar ) && ! $size) {
+		return $avatar;
+	} else if (isset ( $avatar [$size] ))
+		return $avatar [$size];
+	else
+		return false;
+}
+
+/**
+ * 获取用户昵称
+ * 不传入userid取当前用户nickname,如果nickname为空取username
+ * 传入field，取用户$field字段信息
+ */
+function get_nickname($userid = '', $field = '') {
+	$return = '';
+	if (is_numeric ( $userid )) {
+		$member_db = Loader::model ( 'member_model' );
+		$memberinfo = $member_db->getby_userid ( $userid );
+		if (! empty ( $field ) && $field != 'nickname' && isset ( $memberinfo [$field] ) && ! empty ( $memberinfo [$field] ))
+			$return = $memberinfo [$field];
+		else
+			$return = isset ( $memberinfo ['nickname'] ) && ! empty ( $memberinfo ['nickname'] ) ? $memberinfo ['nickname'] . '(' . $memberinfo ['username'] . ')' : $memberinfo ['username'];
+	} else {
+		$return = cookie ( '_nickname' );
+		if (empty ( $return )) $return .= '(' . cookie ( '_username' ) . ')';
+	}
+	return $return;
 }

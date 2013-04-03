@@ -14,7 +14,7 @@ return array (
 		'gzip' => true, // 是否Gzip压缩后输出
 		'debug' => true,// 调试模式
 		'firephp' => true,
-		'auth_key' => 'jNKLkIkXeEQqqvCTkwCY',// 加密随机符
+		'auth_key' => 'yAaTJrWUUjgBLSIsSCEK',// 加密随机符
 		'url_model'=>0,//URL 模式 0 普通模式 1 URL友好模式（需服务器支持）
 
 		'show_time' => true,// 显示运行时间

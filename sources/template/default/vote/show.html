@@ -1,14 +1,14 @@
 {yun:vote do="show" subjectid="$subjectid" order="$order"}
 		{loop $data $v}
-		<form action="{U('vote/index/post',array('subjectid'=>$subjectid))}" method="post">
+		<form action="?app=vote&action=post&subjectid={$subjectid}" method="post">
 		<h5>{$v[subject]}</h5>
-			{pc:vote action="option_lists" subjectid="$subjectid" return="dat"}
+			{yun:vote do="option_lists" subjectid="$subjectid" return="dat"}
 			{loop $dat $option_v}
 			
 			<a href="{$option_v[url]}" target="_blank">{$option_v[option]}</a> <br>
 			{/loop}
 			{$pages}
-			{/pc}
+			{/yun}
 		<input type="submit" value="提交" />
 		</form>
 		{/loop}

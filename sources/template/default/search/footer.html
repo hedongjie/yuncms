@@ -1,10 +1,19 @@
-<!-- 页脚 -->
-<div class="footer">
-  <div class="links"> {yun:content do="category" catid="1" num="15" order="listorder ASC"}
-    {loop $data $r} <a href="{$r[url]}" target="_blank">{$r[catname]}</a> |  
-    {/loop}
-    {/yun} <a href="{SITE_URL}index.php?app=link" target="_blank">友情链接</a> </div>
-  版权所有 &copy; 云端漫步有限公司 All Rrights Reserved.
-  <div class="poweredby"> <span style="font-size:11px;font-family:Verdana"> Powered by <a href="http://www.yuncms.net" target="_blank"><strong><u>YUNCMS</u></strong></a> 2012 </span> </div>
-</div>
-</body></html>
+<div class="sr_footer">	  
+{pc:content action="category" catid="1" num="15" order="listorder ASC"}
+{loop $data $r}
+<a href="{$r[url]}" target="_blank">{$r[catname]}</a> |  
+{/loop}
+{/pc}
+<a href="{APP_PATH}index.php?m=link" target="_blank">友情链接</a>
+<p class="cp">Powered by <strong><a href="http://www.phpcms.cn" target="_blank">PHPCMS</a></strong> v9 &copy; {date('Y', SYS_TIME)} <img src="{IMG_PATH}copyright.gif"/>
+</p></div>
+      </div>
+    </div>
+<!--[if IE 6]>
+<script type="text/javascript" src="{JS_PATH}nsz.js"></script>
+<script type="text/javascript">
+	nsz.fix('.sr_logo img');
+</script>
+<![endif]-->
+</body>
+</html>

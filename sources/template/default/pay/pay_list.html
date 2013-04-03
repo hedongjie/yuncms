@@ -5,13 +5,13 @@
 <div class="col-1 ">
 <h6 class="title">支付记录</h6>
 <div class="content">
-<form name="searchform" action="{SITE_URL}index.php?app=pay&controller=deposit" method="get" >
-<input type="hidden" value="pay" name="app">
-<input type="hidden" value="deposit" name="controller">
-<input type="hidden" value="init" name="action">
+<form name="searchform" action="{APP_PATH}index.php?m=pay&c=deposit" method="get" >
+<input type="hidden" value="pay" name="m">
+<input type="hidden" value="deposit" name="c">
+<input type="hidden" value="init" name="a">
 		<div class="search">
-		订单时间  {helper_form::date('info[start_addtime]',$start_addtime)} 到   {helper_form::date('info[end_addtime]',$end_addtime)}
-		{helper_form::select($trade_status,$status,'name="info[status]"', L('all_status'))}  
+		订单时间  {form::date('info[start_addtime]',$start_addtime)} 到   {form::date('info[end_addtime]',$end_addtime)}
+		{form::select($trade_status,$status,'name="info[status]"', L('all_status'))}  
 		<input type="submit" value="查询" class="button" name="dosubmit">
 		</div>
 </form>
@@ -39,10 +39,12 @@
 	{/loop}
     </tbody>
     </table>
+
  <div id="pages"> {$pages}</div>
 </div>
 <span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
 </div>
+
 </div>
 </div>
 {template 'member', 'footer'}

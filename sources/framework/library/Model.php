@@ -301,6 +301,7 @@ class Model {
 		}
 		return false;
 	}
+
 	final public function get_tables($table = '') {
 		return $this->db->get_tables ( $table );
 	}

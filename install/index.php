@@ -11,6 +11,7 @@ if (phpversion () < '5.3.0') set_magic_quotes_runtime ( 0 );
 if (phpversion () < '5.2.0') exit ( '您的php版本过低，不能安装本软件，请升级到5.2.0或更高版本再安装，谢谢！' );
 defined ( 'BASE_PATH' ) or define ( 'BASE_PATH', dirname ( dirname ( $_SERVER ['SCRIPT_FILENAME'] ) ) . DIRECTORY_SEPARATOR );
 require_once '../sources/init.php';
+error_reporting ( E_ERROR );
 define ( 'INS_PATH', BASE_PATH . 'install' . DIRECTORY_SEPARATOR );
 require_once INS_PATH . 'global.php';
 $steps = include INS_PATH . 'conf/step.php';
@@ -97,12 +98,14 @@ switch ($step) {
 	case '6' : // 安装详细过程
 		$db_config = array ('hostname' => $_POST ['dbhost'],'username' => $_POST ['dbuser'],'password' => $_POST ['dbpw'],'database' => $_POST ['dbname'],'prefix' => $_POST ['prefix'],'pconnect' => $_POST ['pconnect'],'charset' => $_POST ['dbcharset'] );
 		Core_Config::modify ( 'database', $db_config ); // 写入数据库配置信息
-		                                                // Cookie前缀
-		Core_Config::modify ( 'cookie', array ('prefix' => random ( 5 ) . '_' ) );
+
+		Core_Config::modify ( 'cookie', array ('prefix' => random ( 5 ) . '_' ) );// Cookie前缀
 		// 附件访问路径
 		Core_Config::modify ( 'attachment', array ('upload_url' => $siteurl . 'data/attachment/' ) );
 		$auth_key = random ( 20 );
 		Core_Config::modify ( 'config', array ('auth_key' => $auth_key ) );
+		$uuid = uuid ( C ( 'version', 'product' ) . '-' );
+		Core_Config::modify ( 'version', array ('uuid' => $uuid ) );
 		Core_Config::modify ( 'system', array ('js_path' => $siteurl . 'statics/js/','css_path' => $siteurl . 'statics/css/','img_path' => $siteurl . 'statics/images/','app_path' => $siteurl ) );
 		$selectapp = $_POST ['selectapp'];
 		$testdata = $_POST ['testdata'];
@@ -111,7 +114,7 @@ switch ($step) {
 	case '7' : // 完成安装
 		File::write ( DATA_PATH . 'install.lock', 'ok' );
 		include INS_PATH . "step/step_" . $step . ".tpl.php";
-		// helper_folder::delete(INS_PATH);//删除安装目录
+		//Folder::delete(INS_PATH);//删除安装目录
 		break;
 
 	case 'installapp' : // 执行SQL
@@ -145,14 +148,17 @@ switch ($step) {
 		break;
 
 	case 'testdata' : // 安装测试数据
+		$database = C ( 'database', 'default' );
 		if (file_exists ( INS_PATH . "resource" . DIRECTORY_SEPARATOR . "testsql.sql" )) {
 			$sql = file_get_contents ( INS_PATH . "resource" . DIRECTORY_SEPARATOR . "testsql.sql" );
+			$sql = str_replace ( '#table#', $database ['prefix'], $sql );
 			_sql_execute ( $sql );
 		}
 		break;
 
 	case 'cache_all' : // 更新缓存
 		$cache = Loader::lib ( 'admin:cache_api' );
+		$cache->cache ( 'model' );
 		$cache->cache ( 'category' );
 		$cache->cache ( 'downserver' );
 		$cache->cache ( 'badword' );
@@ -163,7 +169,6 @@ switch ($step) {
 		$cache->cache ( 'admin_role' );
 		$cache->cache ( 'urlrule' );
 		$cache->cache ( 'application' );
-		$cache->cache ( 'model' );
 		$cache->cache ( 'workflow' );
 		$cache->cache ( 'dbsource' );
 		$cache->cache ( 'member_group' );

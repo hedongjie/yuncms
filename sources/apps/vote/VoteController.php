@@ -8,6 +8,7 @@
  */
 defined ( 'IN_YUNCMS' ) or exit ( 'No permission resources.' );
 Loader::lib ( 'admin:admin', false );
+error_reporting ( E_ERROR );
 class VoteController extends admin {
 	private $db2, $db;
 	public function __construct() {

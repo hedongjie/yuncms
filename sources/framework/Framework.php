@@ -7,9 +7,9 @@
  * @version $Id: Framework.php 2 2013-01-14 07:14:05Z xutongle $
  */
 // Leaps Version
-define ( 'LEAPS_VERSION', '1.0.1' );
+define ( 'LEAPS_VERSION', '1.0.2' );
 // Leaps Release
-define ( 'LEAPS_RELEASE', '20120216' );
+define ( 'LEAPS_RELEASE', '20130331' );
 define ( 'IS_CGI', substr ( PHP_SAPI, 0, 3 ) == 'cgi' ? true : false );
 define ( 'IS_WIN', strstr ( PHP_OS, 'WIN' ) ? true : false );
 define ( 'IS_CLI', PHP_SAPI == 'cli' ? true : false );

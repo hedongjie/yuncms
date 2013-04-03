@@ -16,9 +16,14 @@ class application_model extends Model {
 
 	public function set_setting($application, $setting = null) {
 		if(!is_null ( $setting )){
-			return $this->where ( array ('application' => $application ) )->update ( array ('setting' => serialize ( $setting ) ) );
+			return $this->where ( array ('application' => $application ) )->update ( array ('setting' => array2string ( $setting ) ) );
 		}
 		return false;
+	}
+
+	function mb_unserialize($serial_str) {
+		$out = preg_replace('!s:(\d+):"(.*?)";!se', "'s:'.strlen('$2').':\"$2\";'", $serial_str );
+		return unserialize($out);
 	}
 
 	/**
@@ -29,7 +34,7 @@ class application_model extends Model {
 	public function get_setting($application) {
 		$result = $this->where ( array ('application' => $application ) )->find ();
 		if (! empty ( $result ['setting'] )) {
-			return unserialize ( $result ['setting'] );
+			return string2array ( $result ['setting'] );
 		}
 		return false;
 	}

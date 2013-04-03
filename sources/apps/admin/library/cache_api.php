@@ -334,9 +334,9 @@ class cache_api {
 	public function member_model() {
 		define ( 'MEMBER_MODEL_PATH', APPS_PATH . 'member' . DIRECTORY_SEPARATOR . 'fields' . DIRECTORY_SEPARATOR );
 		// 模型缓存路径
-		define ( 'MEMBER_CACHE_MODEL_PATH', DATA_PATH . 'member' . DIRECTORY_SEPARATOR );
+		define ( 'MEMBER_CACHE_MODEL_PATH', DATA_PATH . 'model' . DIRECTORY_SEPARATOR );
 		$model_db = Loader::model ( 'model_model' );
-		$datas = $model_db->where(array ('type' => 2 ))->key('modelid')->order('sort')->select ( );
+		$datas = $model_db->where(array ('type' => 2 ))->key('modelid')->order('sort ASC')->select ( );
 		$models = array ();
 		foreach ( $datas as $data ) {
 			$models [$data ['modelid']] = $data;
@@ -375,7 +375,7 @@ class cache_api {
 					$_value = array_merge ( $_value, $setting );
 					$field_array [$_value ['field']] = $_value;
 				}
-				S ( 'member/model_field_' . $modelid, $field_array );
+				S ( 'model/member_field_' . $modelid, $field_array );
 			}
 		}
 		return true;

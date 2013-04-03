@@ -4,9 +4,9 @@
  * @author Tongle Xu <xutongle@gmail.com> 2012-6-4
  * @copyright Copyright (c) 2003-2103 yuncms.net
  * @license http://leaps.yuncms.net
- * @version $Id: member_model.php 92 2013-03-23 07:56:26Z 85825770@qq.com $
+ * @version $Id: member_model.php 292 2013-04-02 09:22:55Z 85825770@qq.com $
  */
-if (! defined ( 'CACHE_MODEL_PATH' )) define ( 'CACHE_MODEL_PATH', DATA_PATH . 'member' . DIRECTORY_SEPARATOR );
+if (! defined ( 'CACHE_MODEL_PATH' )) define ( 'CACHE_MODEL_PATH', DATA_PATH . 'model' . DIRECTORY_SEPARATOR );
 class member_model extends Model {
 
 	public function __construct() {
@@ -25,11 +25,11 @@ class member_model extends Model {
 	 */
 	public function get_user($username = null, $field = 'userid') {
 		if (is_null ( $username )) return false;
-		$memberinfo = $this->get_one ( array ($field => $username ) );
+		$memberinfo = $this->where ( array ($field => $username ) )->find();
 		if (! $memberinfo) return false;
 		// 获取用户模型信息
 		$this->set_model ( $memberinfo ['modelid'] );
-		$member_modelinfo = $this->get_one ( array ('userid' => $memberinfo ['userid'] ) );
+		$member_modelinfo = $this->getby_userid ( $memberinfo ['userid'] );
 		$this->set_model ();
 		if (is_array ( $memberinfo )) {
 			$memberinfo = array_merge ( $memberinfo, $member_modelinfo );

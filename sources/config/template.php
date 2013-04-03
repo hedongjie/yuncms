@@ -6,7 +6,7 @@
  * @version $Id: template.php 2 2013-01-14 07:14:05Z xutongle $
  */
 return array(
-		'name' => 'phpcms',
+		'name' => 'default',
 		'edit'=>true,
 		'ext'=>'.html',
 		'referesh'=>true,

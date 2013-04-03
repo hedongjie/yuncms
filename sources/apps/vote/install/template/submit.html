@@ -1,4 +1,4 @@
-<form style="border: medium none;" id="voteform{$id}" method="post" action="{U('vote/index/post','subjectid='.$id)}">
+<form style="border: medium none;" id="voteform{$id}" method="post" action="{SITE_URL}index.php?app=vote&action=post&subjectid={$id}">
  <dl>
       <dt>{$subject}</dt>
       </dl>
@@ -12,5 +12,5 @@
 {/loop}
 <input type="hidden" name="voteid" value="{$id}">
 </dl> 
-<p> &nbsp;&nbsp; <input type="submit" value="提交" name="dosubmit" style="{$display}" />    &nbsp;&nbsp; <a href="{U('vote/index/result','subjectid='.$id)}" target="_blank">查看结果</a> </p>
+<p> &nbsp;&nbsp; <input type="submit" value="提交" name="dosubmit" style="{$display}" />    &nbsp;&nbsp; <a href="{APP_PATH}/index.php?app=vote&action=result&id={$id}" target="_blank">查看结果</a> </p>
 </form>
