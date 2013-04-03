@@ -1,0 +1,1 @@
+INSERT INTO `yuncms_application` VALUES('formguide', '表单向导', 'formguide/', 0, '1.0', 'formguide', 'array (\n  ''allowmultisubmit'' => ''0'',\n  ''interval'' => '''',\n  ''allowunreg'' => ''1'',\n  ''mailmessage'' => '''',\n)', 0, 0, '2010-10-20', '2010-10-20');

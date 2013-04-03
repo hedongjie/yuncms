@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>商业授权查询</title>
+<style type="text/css"> 
+<!--
+body{ background:#fff; text-align:center; font-size:12px;}
+a { color:#333; text-decoration:none;}
+#cert{background:#fff url({IMG_PATH}license/bg.jpg) no-repeat 0 0; width:632px; height:396px; margin:50px auto; position:relative;}
+#cert table{ position:absolute; left:160px; top:130px;}
+#cert table th{ height:30px; line-height:30px; text-align:right; padding-right:10px; font-weight:normal; color:#000;}
+#cert table td{ text-align:left; color:#333;}
+-->
+</style>
+</head>
+<body>
+<div id="cert">
+  <table cellpadding="0" cellspacing="0">
+    <tr>
+      <th>授权产品：</th>
+      <td>{$type_arr[$info['typeid']]}</td>
+    </tr>
+    <tr>
+      <th>授权域名：</th>
+      <td>{$domain}</td>
+    </tr>
+    <tr>
+      <th>网站名称：</th>
+      <td>{$sitename}</td>
+    </tr>
+    <tr>
+      <th>授权持有人：</th>
+      <td>{$truename}</td>
+    </tr>
+    <tr>
+      <th>授权起始时间：</th>
+      <td>{Format::date($addtime)}　[终身授权]</td>
+    </tr>
+    <tr>
+      <th>服务起止日期：</th>
+      <td>{$starttime}　至　{$endtime}</td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

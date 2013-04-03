@@ -1,0 +1,1 @@
+INSERT INTO `yuncms_application` VALUES ('license', '软件授权', '', '0', '1.0', '', '', '0', '0', '2011-05-18', '2011-05-18');

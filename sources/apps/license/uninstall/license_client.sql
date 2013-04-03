@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS `yuncms_license_client`;
